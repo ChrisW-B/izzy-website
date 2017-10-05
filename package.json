@@ -1,0 +1,21 @@
+{
+  "name": "izzy-website",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ChrisW-B/izzy-website.git",
+  "author": "Chris Barry <me@chrisb.xyz>",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.0",
+    "node-sass": "^4.5.3",
+    "stylelint": "^8.1.1",
+    "stylelint-config-standard": "^17.0.0",
+    "stylelint-no-unsupported-browser-features": "^1.0.0",
+    "stylelint-order": "^0.7.0"
+  },
+  "scripts": {
+    "start": "live-server --no-browser --ignore=css/sass,css/style.css.map",
+    "sass": "node-sass -w css/sass/style.scss -o css --source-map=true --output-style=compressed",
+    "dev": "yarn start & yarn sass"
+  }
+}
