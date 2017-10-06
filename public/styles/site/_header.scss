@@ -1,0 +1,81 @@
+#header {
+  font-family: sans-serif;
+
+  .mini-menu {
+    fill: orange;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+
+    &:hover {
+      .menu-items {
+        opacity: 1;
+      }
+    }
+
+    .menu-items {
+      list-style: none;
+      margin: 0;
+      opacity: 0;
+      padding: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+
+      &:hover {
+        opacity: 1;
+      }
+
+      & .menu-item {
+        border: 1px solid black;
+        border-bottom: 0;
+        display: flex;
+        min-height: 40px;
+        min-width: 150px;
+        font-size: 1.3em;
+
+        a {
+          color: white;
+          text-decoration: none;
+          flex: 1;
+          text-align: right;
+          padding: 10px;
+        }
+
+
+        &:last-child {
+          border-bottom: 1px solid black;
+        }
+
+        &.home {
+          background: orange;
+        }
+
+        &.about {
+          background: blue;
+        }
+
+        &.collabs {
+          background: green;
+        }
+
+        &.illustrations {
+          background: purple;
+        }
+
+        &.comics {
+          background: orange;
+        }
+
+        &.paperwork {
+          background: orchid;
+        }
+
+        &.contact {
+          background: orangered;
+        }
+      }
+    }
+  }
+}

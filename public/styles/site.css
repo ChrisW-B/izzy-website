@@ -1,0 +1,116 @@
+body,
+html {
+  margin: 0;
+  padding: 0; }
+  body .home-container,
+  html .home-container {
+    display: flex;
+    height: 100vh;
+    min-height: 1000px;
+    min-width: 900px;
+    place-content: center;
+    place-items: center; }
+    body .home-container .menu,
+    html .home-container .menu {
+      height: 750px;
+      position: relative;
+      width: 750px; }
+      body .home-container .menu > svg,
+      html .home-container .menu > svg {
+        fill: red; }
+        body .home-container .menu > svg polygon,
+        html .home-container .menu > svg polygon {
+          transform: scale(2.5); }
+    body .home-container .menu-item,
+    html .home-container .menu-item {
+      flex: 0 0;
+      opacity: 0;
+      position: absolute;
+      transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 200px; }
+      body .home-container .menu-item svg polygon,
+      html .home-container .menu-item svg polygon {
+        transform: scale(4); }
+      body .home-container .menu-item:hover,
+      html .home-container .menu-item:hover {
+        opacity: 1; }
+      body .home-container .menu-item.about,
+      html .home-container .menu-item.about {
+        fill: blue;
+        left: 275px;
+        top: -125px; }
+      body .home-container .menu-item.collabs,
+      html .home-container .menu-item.collabs {
+        fill: green;
+        right: -50px;
+        top: 75px; }
+      body .home-container .menu-item.illustration,
+      html .home-container .menu-item.illustration {
+        bottom: 100px;
+        fill: purple;
+        right: -50px; }
+      body .home-container .menu-item.comics,
+      html .home-container .menu-item.comics {
+        bottom: -125px;
+        fill: orange;
+        left: 275px; }
+      body .home-container .menu-item.paperwork,
+      html .home-container .menu-item.paperwork {
+        fill: orchid;
+        left: -50px;
+        top: 75px; }
+      body .home-container .menu-item.contact,
+      html .home-container .menu-item.contact {
+        bottom: 100px;
+        fill: orangered;
+        left: -50px; }
+
+#header {
+  font-family: sans-serif; }
+  #header .mini-menu {
+    fill: orange;
+    position: fixed;
+    right: 20px;
+    top: 20px; }
+    #header .mini-menu:hover .menu-items {
+      opacity: 1; }
+    #header .mini-menu .menu-items {
+      list-style: none;
+      margin: 0;
+      opacity: 0;
+      padding: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1); }
+      #header .mini-menu .menu-items:hover {
+        opacity: 1; }
+      #header .mini-menu .menu-items .menu-item {
+        border: 1px solid black;
+        border-bottom: 0;
+        display: flex;
+        min-height: 40px;
+        min-width: 150px;
+        font-size: 1.3em; }
+        #header .mini-menu .menu-items .menu-item a {
+          color: white;
+          text-decoration: none;
+          flex: 1;
+          text-align: right;
+          padding: 10px; }
+        #header .mini-menu .menu-items .menu-item:last-child {
+          border-bottom: 1px solid black; }
+        #header .mini-menu .menu-items .menu-item.home {
+          background: orange; }
+        #header .mini-menu .menu-items .menu-item.about {
+          background: blue; }
+        #header .mini-menu .menu-items .menu-item.collabs {
+          background: green; }
+        #header .mini-menu .menu-items .menu-item.illustrations {
+          background: purple; }
+        #header .mini-menu .menu-items .menu-item.comics {
+          background: orange; }
+        #header .mini-menu .menu-items .menu-item.paperwork {
+          background: orchid; }
+        #header .mini-menu .menu-items .menu-item.contact {
+          background: orangered; }
