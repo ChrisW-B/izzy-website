@@ -16,9 +16,10 @@ const routes = {
 exports = module.exports = function (app) {
   // Views
   app.get('/', routes.views.index);
-  app.get('/blog/:category?', routes.views.blog);
-  app.get('/blog/post/:post', routes.views.post);
-  app.get('/gallery', routes.views.gallery);
-  app.get('/illustrations/:category?', routes.views.illustrations);
-  app.get('/illustrations/post/:post', routes.views.post);
+
+  app.get('/illustration/:category?', routes.views.illustrations);
+  app.get('/illustration/post/:post', routes.views.post);
+
+  app.get('/paperwork/:category?', routes.views.paperwork);
+  app.get('/paperwork/post/:post', routes.views.post);
 };

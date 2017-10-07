@@ -1,12 +1,12 @@
 const keystone = require('keystone');
 const async = require('async');
 
-exports = module.exports = function (req, res) {
+const paperwork = (req, res) => {
   const view = new keystone.View(req, res);
   const { locals } = res;
 
   // Init locals
-  locals.section = 'blog';
+  locals.section = 'paperwork';
   locals.filters = {
     category: req.params.category
   };
@@ -25,21 +25,24 @@ exports = module.exports = function (req, res) {
       locals.data.categories = results;
 
       // Load the counts for each category
-      return async.each(locals.data.categories, (category, next) => {
-        keystone.list('Post').model.count().where('categories').in([category.id]).exec((err, count) => {
-          category.postCount = count;
-          next(err);
+      async.each(locals.data.categories, (category, cont) => {
+        const newCategory = { ...category };
+        keystone.list('Paperwork').model.count().where('categories').in([category.id]).exec((error, count) => {
+          newCategory.postCount = count;
+          cont(error);
         });
-      }, (err) => {
-        next(err);
+      }, (error) => {
+        next(error);
       });
+
+      return null;
     });
   });
 
   // Load the current category filter
   view.on('init', (next) => {
     if (req.params.category) {
-      keystone.list('PostCategory').model.findOne({ key: locals.filters.category }).exec((err, result) => {
+      keystone.list('PaperworkCategory').model.findOne({ key: locals.filters.category }).exec((err, result) => {
         locals.data.category = result;
         next(err);
       });
@@ -50,7 +53,7 @@ exports = module.exports = function (req, res) {
 
   // Load the posts
   view.on('init', (next) => {
-    const q = keystone.list('Post')
+    const q = keystone.list('Paperwork')
       .paginate({
         page: req.query.page || 1,
         perPage: 10,
@@ -73,5 +76,8 @@ exports = module.exports = function (req, res) {
   });
 
   // Render the view
-  view.render('blog');
+  view.render('paperwork');
 };
+
+exports = paperwork;
+module.exports = paperwork;
