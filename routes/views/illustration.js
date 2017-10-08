@@ -1,11 +1,11 @@
 const keystone = require('keystone');
 
-const Paperwork = (req, res) => {
+const Illustration = (req, res) => {
   const view = new keystone.View(req, res);
   const { locals } = res;
 
   // Init locals
-  locals.section = 'paperwork';
+  locals.section = 'illustration';
   locals.filters = {
     category: req.params.category
   };
@@ -16,7 +16,7 @@ const Paperwork = (req, res) => {
 
   // Load the current category filter
   view.on('init', (next) => {
-    keystone.list('PostCategory').model.findOne({ key: 'paperwork' }).exec((err, result) => {
+    keystone.list('PostCategory').model.findOne({ key: 'illustration' }).exec((err, result) => {
       locals.data.category = result;
       next(err);
     });
@@ -47,8 +47,8 @@ const Paperwork = (req, res) => {
   });
 
   // Render the view
-  view.render('paperwork');
+  view.render('illustration');
 };
 
-exports = Paperwork;
-module.exports = Paperwork;
+exports = Illustration;
+module.exports = Illustration;

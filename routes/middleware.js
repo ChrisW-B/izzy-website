@@ -8,7 +8,7 @@ exports.initLocals = function (req, res, next) {
     { label: 'Home', key: 'home', href: '/' },
     { label: 'About', key: 'about', href: '/about' },
     { label: 'Collabs', key: 'collabs', href: '/collabs' },
-    { label: 'Illustrations', key: 'illustrations', href: '/illustrations' },
+    { label: 'Illustration', key: 'illustration', href: '/illustration' },
     { label: 'Comics', key: 'comics', href: '/comics' },
     { label: 'Paperwork', key: 'paperwork', href: '/paperwork' },
     { label: 'Contact', key: 'contact', href: '/contact' }

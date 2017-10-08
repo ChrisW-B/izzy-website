@@ -3,18 +3,19 @@ const keystone = require('keystone');
 const { Types } = keystone.Field;
 
 /**
- * Paperwork Model
+ * Illustration Model
  * ==========
  */
 
-const Paperwork = new keystone.List('Paperwork', {
+const Post = new keystone.List('Post', {
   map: { name: 'title' },
 
   autokey: { path: 'slug', from: 'title', unique: true }
 });
 
-Paperwork.add({
+Post.add({
   title: { type: String, required: true },
+  categories: { type: Types.Relationship, ref: 'PostCategory', many: true },
   state: {
     type: Types.Select,
     options: 'draft, published, archived',
@@ -27,11 +28,10 @@ Paperwork.add({
   content: {
     brief: { type: Types.Html, wysiwyg: true, height: 150 },
     extended: { type: Types.Html, wysiwyg: true, height: 400 }
-  },
-  categories: { type: Types.Relationship, ref: 'PostCategory', many: true }
+  }
 });
 
-Paperwork.schema.virtual('content.full').get(() => this.content.extended || this.content.brief);
+Post.schema.virtual('content.full').get(() => this.content.extended || this.content.brief);
 
-Paperwork.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';
-Paperwork.register();
+Post.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';
+Post.register();

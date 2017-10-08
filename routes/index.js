@@ -17,9 +17,10 @@ exports = module.exports = function (app) {
   // Views
   app.get('/', routes.views.index);
 
-  app.get('/illustration/:category?', routes.views.illustrations);
-  app.get('/illustration/post/:post', routes.views.post);
+  app.get('/all', routes.views.all);
 
+  app.get('/:type/post/:post', routes.views.post);
+
+  app.get('/illustration/:category?', routes.views.illustration);
   app.get('/paperwork/:category?', routes.views.paperwork);
-  app.get('/paperwork/post/:post', routes.views.post);
 };

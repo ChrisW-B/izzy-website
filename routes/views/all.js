@@ -1,12 +1,12 @@
 const keystone = require('keystone');
 const async = require('async');
 
-const illustrations = (req, res) => {
+exports = module.exports = function (req, res) {
   const view = new keystone.View(req, res);
   const { locals } = res;
 
   // Init locals
-  locals.section = 'illustrations';
+  locals.section = 'all';
   locals.filters = {
     category: req.params.category
   };
@@ -25,35 +25,20 @@ const illustrations = (req, res) => {
       locals.data.categories = results;
 
       // Load the counts for each category
-      async.each(locals.data.categories, (category, cont) => {
-        const newCategory = { ...category };
-        keystone.list('Illustration').model.count().where('categories').in([category.id]).exec((error, count) => {
-          newCategory.postCount = count;
-          cont(error);
+      return async.each(locals.data.categories, (category, next) => {
+        keystone.list('Post').model.count().where('categories').in([category.id]).exec((err, count) => {
+          category.postCount = count;
+          next(err);
         });
-      }, (error) => {
-        next(error);
-      });
-
-      return null;
-    });
-  });
-
-  // Load the current category filter
-  view.on('init', (next) => {
-    if (req.params.category) {
-      keystone.list('IllustrationCategory').model.findOne({ key: locals.filters.category }).exec((err, result) => {
-        locals.data.category = result;
+      }, (err) => {
         next(err);
       });
-    } else {
-      next();
-    }
+    });
   });
 
   // Load the posts
   view.on('init', (next) => {
-    const q = keystone.list('Illustration')
+    const q = keystone.list('Post')
       .paginate({
         page: req.query.page || 1,
         perPage: 10,
@@ -65,10 +50,6 @@ const illustrations = (req, res) => {
       .sort('-publishedDate')
       .populate('author categories');
 
-    if (locals.data.category) {
-      q.where('categories').in([locals.data.category]);
-    }
-
     q.exec((err, results) => {
       locals.data.posts = results;
       next(err);
@@ -76,8 +57,5 @@ const illustrations = (req, res) => {
   });
 
   // Render the view
-  view.render('illustrations');
+  view.render('all');
 };
-
-exports = illustrations;
-module.exports = illustrations;

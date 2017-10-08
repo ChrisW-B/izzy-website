@@ -14,5 +14,10 @@ exports.create = {
     email: 'me@chrisb.xyz',
     password: 'TempPass',
     isAdmin: true
+  }],
+  PostCategory: [{
+    name: 'Illustration'
+  }, {
+    name: 'Paperwork'
   }]
 };
