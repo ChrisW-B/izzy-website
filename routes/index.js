@@ -18,9 +18,10 @@ exports = module.exports = function (app) {
   app.get('/', routes.views.index);
 
   app.get('/all', routes.views.all);
+  app.get('/all/:tag?', routes.views.all);
 
   app.get('/:type/post/:post', routes.views.post);
 
-  app.get('/illustration/:category?', routes.views.illustration);
-  app.get('/paperwork/:category?', routes.views.paperwork);
+  app.get('/illustration/:tag?', routes.views.illustration);
+  app.get('/paperwork/:tag?', routes.views.paperwork);
 };

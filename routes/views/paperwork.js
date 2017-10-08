@@ -1,25 +1,57 @@
 const keystone = require('keystone');
+const async = require('async');
 
 const Paperwork = (req, res) => {
   const view = new keystone.View(req, res);
-  const { locals } = res;
 
   // Init locals
+  const { locals } = res;
   locals.section = 'paperwork';
-  locals.filters = {
-    category: req.params.category
-  };
+  locals.filters = { ...req.params };
   locals.data = {
     posts: [],
-    categories: []
+    tags: []
   };
 
   // Load the current category filter
   view.on('init', (next) => {
-    keystone.list('PostCategory').model.findOne({ key: 'paperwork' }).exec((err, result) => {
+    keystone.list('PostCategory').model.findOne({ key: locals.section }).exec((err, result) => {
       locals.data.category = result;
       next(err);
     });
+  });
+
+  // Load all tags
+  view.on('init', (next) => {
+    keystone.list('PostTag').model.find().sort('name').exec((err, results) => {
+      if (err || !results.length) {
+        return next(err);
+      }
+
+      locals.data.tags = results;
+
+      // Load the counts for each tags
+      return async.each(locals.data.tags, (tag, next) => {
+        keystone.list('Post').model.count().where('tags').in([tag.id]).exec((err, count) => {
+          tag.postCount = count;
+          next(err);
+        });
+      }, (err) => {
+        next(err);
+      });
+    });
+  });
+
+  // Load the current tag filter
+  view.on('init', (next) => {
+    if (req.params.tag) {
+      keystone.list('PostTag').model.findOne({ key: locals.filters.tag }).exec((err, result) => {
+        locals.data.tag = result;
+        next(err);
+      });
+    } else {
+      next();
+    }
   });
 
   // Load the posts
@@ -34,10 +66,12 @@ const Paperwork = (req, res) => {
         }
       })
       .sort('-publishedDate')
-      .populate('author categories');
+      .populate('author tags category');
 
-    if (locals.data.category) {
-      q.where('categories').in([locals.data.category]);
+    q.where('category').in([locals.data.category]);
+
+    if (locals.data.tag) {
+      q.where('tags').in([locals.data.tag]);
     }
 
     q.exec((err, results) => {

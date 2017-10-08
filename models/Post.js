@@ -15,7 +15,7 @@ const Post = new keystone.List('Post', {
 
 Post.add({
   title: { type: String, required: true },
-  categories: { type: Types.Relationship, ref: 'PostCategory', many: true },
+  category: { type: Types.Relationship, ref: 'PostCategory' },
   state: {
     type: Types.Select,
     options: 'draft, published, archived',
@@ -28,7 +28,8 @@ Post.add({
   content: {
     brief: { type: Types.Html, wysiwyg: true, height: 150 },
     extended: { type: Types.Html, wysiwyg: true, height: 400 }
-  }
+  },
+  tags: { type: Types.Relationship, ref: 'PostTag', many: true }
 });
 
 Post.schema.virtual('content.full').get(() => this.content.extended || this.content.brief);

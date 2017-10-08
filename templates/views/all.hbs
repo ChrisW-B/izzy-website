@@ -1,6 +1,6 @@
 {{>header}}
 <div class="container">
-  <h1>Illustrations</h1>
+  <h1>All Posts</h1>
 </div>
 <div class="container">
   <div class="row">
@@ -10,7 +10,7 @@
         {{# each data.posts.results}}
           <div data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post">
             <h2><a href="{{postUrl slug 'all'}}">{{{title}}}</a></h2>
-            <p class="lead text-muted">{{{categoryList categories prefix="Posted in "}}}
+            <p class="lead text-muted">{{{categoryList tags prefix="Posted in "}}}
               {{#if author.name.first}}by {{author.name.first}}{{/if}}
             </p>
             {{#if image}}<img src="{{{cloudinaryUrl image width=160 height=160 crop='fit' }}}" class="img pull-right">{{/if}}
@@ -23,12 +23,12 @@
       </div>
     </div>
     <div class="col-sm-4 col-md-3">
-      <h2>Categories</h2>
+      <h2>Tags</h2>
       <div style="margin-top: 70px;" class="list-group">
-        <a href="/all" class="active list-group-item">All Categories</a>
-        {{# each data.categories }}
-          <a href="{{categoryUrl key}}" class="false list-group-item">{{name}}</a>
-          {{/each}}
+        <a href="/all" class="active list-group-item">All Tags</a>
+        {{# each data.tags }}
+          <a href="{{categoryUrl 'all' key}}" class="false list-group-item">{{name}}</a>
+        {{/each}}
       </div>
     </div>
   </div>

@@ -3,37 +3,47 @@ const async = require('async');
 
 exports = module.exports = function (req, res) {
   const view = new keystone.View(req, res);
-  const { locals } = res;
 
   // Init locals
+  const { locals } = res;
   locals.section = 'all';
-  locals.filters = {
-    category: req.params.category
-  };
+  locals.filters = { ...req.params };
   locals.data = {
     posts: [],
-    categories: []
+    tags: []
   };
 
-  // Load all categories
+  // Load all tags
   view.on('init', (next) => {
-    keystone.list('PostCategory').model.find().sort('name').exec((err, results) => {
+    keystone.list('PostTag').model.find().sort('name').exec((err, results) => {
       if (err || !results.length) {
         return next(err);
       }
 
-      locals.data.categories = results;
+      locals.data.tags = results;
 
-      // Load the counts for each category
-      return async.each(locals.data.categories, (category, next) => {
-        keystone.list('Post').model.count().where('categories').in([category.id]).exec((err, count) => {
-          category.postCount = count;
+      // Load the counts for each tags
+      return async.each(locals.data.tags, (tag, next) => {
+        keystone.list('Post').model.count().where('tags').in([tag.id]).exec((err, count) => {
+          tag.postCount = count;
           next(err);
         });
       }, (err) => {
         next(err);
       });
     });
+  });
+
+  // Load the current tag filter
+  view.on('init', (next) => {
+    if (req.params.tag) {
+      keystone.list('PostTag').model.findOne({ key: locals.filters.tag }).exec((err, result) => {
+        locals.data.tag = result;
+        next(err);
+      });
+    } else {
+      next();
+    }
   });
 
   // Load the posts
@@ -48,7 +58,11 @@ exports = module.exports = function (req, res) {
         }
       })
       .sort('-publishedDate')
-      .populate('author categories');
+      .populate('author tags');
+
+    if (locals.data.tag) {
+      q.where('tags').in([locals.data.tag]);
+    }
 
     q.exec((err, results) => {
       locals.data.posts = results;

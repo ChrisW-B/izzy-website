@@ -202,8 +202,8 @@ module.exports = function () {
   };
 
   // create the category url for a blog-category page
-  _helpers.categoryUrl = function (categorySlug, options) {
-    return (`/${categorySlug}`);
+  _helpers.categoryUrl = function (categorySlug, tag) {
+    return (`/${categorySlug}/${tag}`);
   };
 
   // ### Pagination Helpers
