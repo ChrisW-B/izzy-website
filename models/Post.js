@@ -29,7 +29,7 @@ Post.add({
     brief: { type: Types.Html, wysiwyg: true, height: 150 },
     extended: { type: Types.Html, wysiwyg: true, height: 400 }
   },
-  tags: { type: Types.Relationship, ref: 'PostTag', many: true }
+  tags: { type: Types.Relationship, ref: 'PostTag', many: true, createInline: true }
 });
 
 Post.schema.virtual('content.full').get(() => this.content.extended || this.content.brief);
