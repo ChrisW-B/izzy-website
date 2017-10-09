@@ -151,6 +151,13 @@ module.exports = function () {
     return rtn;
   };
 
+  _helpers.shortContent = function (content, category, slug) {
+    const cleanContent = content.replace(/<[^>]+>/g, '');
+    return cleanContent.length > 140
+      ? new hbs.SafeString(`${cleanContent.substring(0, 140)}… <br /> <a href="${_helpers.postUrl(category, slug)}">Read More</a>`)
+      : new hbs.SafeString(content);
+  }
+
   // ### CloudinaryUrl Helper
   // Direct support of the cloudinary.url method from Handlebars (see
   // cloudinary package documentation for more details).
@@ -162,7 +169,6 @@ module.exports = function () {
   // Returns an src-string for a cloudinary image
 
   _helpers.cloudinaryUrl = function (context, options) {
-    console.log({context, options})
     // if we dont pass in a context and just kwargs
     // then `this` refers to our default scope block and kwargs
     // are stored in context.hash
@@ -191,8 +197,8 @@ module.exports = function () {
   // the routes by keynames to reduce the maintenance of changing urls
 
   // Direct url link to a specific post
-  _helpers.postUrl = function (postSlug, categorySlug) {
-    return (`/${categorySlug}/post/${postSlug}`);
+  _helpers.postUrl = function (slug, category) {
+    return (`/${category}/post/${slug}`);
   };
 
   // might be a ghost helper

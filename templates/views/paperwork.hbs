@@ -14,10 +14,7 @@
               {{#if author.name.first}}by {{author.name.first}}{{/if}}
             </p>
             {{#if images}}<img src="{{{cloudinaryUrl images.[0] width=160 height=160 crop='fit' }}}" class="img pull-right">{{/if}}
-            <p>{{{content.brief}}}</p>
-            {{#if content.extended}}
-              <p class="read-more"><a href="{{postUrl slug 'paperwork'}}">Read more...</a></p>
-            {{/if}}
+            <p>{{shortContent content slug 'paperwork'}}</p>
           </div>
           {{/each}}
       </div>
