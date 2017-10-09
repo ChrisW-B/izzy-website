@@ -17,11 +17,14 @@ exports = module.exports = function (app) {
   // Views
   app.get('/', routes.views.index);
 
-  app.get('/all', routes.views.all);
+  app.get('/about', routes.views.about);
+  app.get('/contact', routes.views.contact);
+
   app.get('/all/:tag?', routes.views.all);
-
-  app.get('/:type/post/:post', routes.views.post);
-
   app.get('/illustration/:tag?', routes.views.illustration);
   app.get('/paperwork/:tag?', routes.views.paperwork);
+  app.get('/collabs/:tag?', routes.views.collabs);
+  app.get('/comics/:tag?', routes.views.comics);
+
+  app.get('/:type/post/:post', routes.views.post);
 };

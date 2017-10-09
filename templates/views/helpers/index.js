@@ -81,14 +81,14 @@ module.exports = function () {
   // Supports same interface, just different name/semantics
   //
   // *Usage example:*
-  // `{{categoryList categories separator=' - ' prefix='Filed under '}}`
+  // `{{tagList categories separator=' - ' prefix='Filed under '}}`
   //
   // Returns an html-string of the categories on the post.
   // By default, categories are separated by commas.
   // input. categories:['tech', 'js']
   // output. 'Filed Undder <a href="blog/tech">tech</a>, <a href="blog/js">js</a>'
 
-  _helpers.categoryList = function (categories, options) {
+  _helpers.tagList = function (tags, options) {
     var autolink = _.isString(options.hash.autolink) && options.hash.autolink === 'false' ? false : true;
     var separator = _.isString(options.hash.separator) ? options.hash.separator : ', ';
     var prefix = _.isString(options.hash.prefix) ? options.hash.prefix : '';
@@ -109,8 +109,8 @@ module.exports = function () {
       return _.escape(tagNames.join(separator));
     }
 
-    if (categories && categories.length) {
-      output = prefix + createTagList(categories) + suffix;
+    if (tags && tags.length) {
+      output = prefix + createTagList(tags) + suffix;
     }
     return new hbs.SafeString(output);
   };

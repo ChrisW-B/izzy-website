@@ -8,10 +8,7 @@ exports = module.exports = function (req, res) {
   const { locals } = res;
   locals.section = 'all';
   locals.filters = { ...req.params };
-  locals.data = {
-    posts: [],
-    tags: []
-  };
+  locals.data = { posts: [], tags: [] };
 
   // Load all tags
   view.on('init', (next) => {

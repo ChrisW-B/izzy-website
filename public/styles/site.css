@@ -1,3 +1,7 @@
+html,
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }
+
 body,
 html {
   margin: 0;
@@ -32,7 +36,6 @@ html {
       body .home-container .menu-item p,
       html .home-container .menu-item p {
         color: red;
-        font-family: sans-serif;
         font-size: 1.2em;
         position: absolute;
         text-align: center;
@@ -66,52 +69,50 @@ html {
         bottom: 150px;
         left: 40px; }
 
-#header {
-  font-family: sans-serif; }
-  #header .mini-menu {
-    fill: orange;
-    position: fixed;
-    right: 20px;
-    top: 20px; }
-    #header .mini-menu:hover .menu-items {
+#header .mini-menu {
+  fill: orange;
+  position: fixed;
+  right: 20px;
+  top: 20px; }
+  #header .mini-menu:hover .menu-items {
+    opacity: 1; }
+  #header .mini-menu .menu-items {
+    list-style: none;
+    margin: 0;
+    opacity: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1); }
+    #header .mini-menu .menu-items:hover {
       opacity: 1; }
-    #header .mini-menu .menu-items {
-      list-style: none;
-      margin: 0;
-      opacity: 0;
-      padding: 0;
-      position: absolute;
-      right: 0;
-      top: 0;
-      transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1); }
-      #header .mini-menu .menu-items:hover {
-        opacity: 1; }
-      #header .mini-menu .menu-items .menu-item {
-        border: 1px solid black;
-        border-bottom: 0;
-        display: flex;
-        min-height: 40px;
-        min-width: 150px;
-        font-size: 1.3em; }
-        #header .mini-menu .menu-items .menu-item a {
-          color: white;
-          text-decoration: none;
-          flex: 1;
-          text-align: right;
-          padding: 10px; }
-        #header .mini-menu .menu-items .menu-item:last-child {
-          border-bottom: 1px solid black; }
-        #header .mini-menu .menu-items .menu-item.home {
-          background: orange; }
-        #header .mini-menu .menu-items .menu-item.about {
-          background: blue; }
-        #header .mini-menu .menu-items .menu-item.collabs {
-          background: green; }
-        #header .mini-menu .menu-items .menu-item.illustrations {
-          background: purple; }
-        #header .mini-menu .menu-items .menu-item.comics {
-          background: orange; }
-        #header .mini-menu .menu-items .menu-item.paperwork {
-          background: orchid; }
-        #header .mini-menu .menu-items .menu-item.contact {
-          background: orangered; }
+    #header .mini-menu .menu-items .menu-item {
+      border: 1px solid black;
+      border-bottom: 0;
+      display: flex;
+      min-height: 40px;
+      min-width: 150px;
+      font-size: 1.3em; }
+      #header .mini-menu .menu-items .menu-item a {
+        color: white;
+        text-decoration: none;
+        flex: 1;
+        text-align: right;
+        padding: 10px; }
+      #header .mini-menu .menu-items .menu-item:last-child {
+        border-bottom: 1px solid black; }
+      #header .mini-menu .menu-items .menu-item.home {
+        background: orange; }
+      #header .mini-menu .menu-items .menu-item.about {
+        background: blue; }
+      #header .mini-menu .menu-items .menu-item.collabs {
+        background: green; }
+      #header .mini-menu .menu-items .menu-item.illustration {
+        background: purple; }
+      #header .mini-menu .menu-items .menu-item.comics {
+        background: orange; }
+      #header .mini-menu .menu-items .menu-item.paperwork {
+        background: orchid; }
+      #header .mini-menu .menu-items .menu-item.contact {
+        background: orangered; }

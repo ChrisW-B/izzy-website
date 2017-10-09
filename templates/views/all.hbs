@@ -10,7 +10,7 @@
         {{# each data.posts.results}}
           <div data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post">
             <h2><a href="{{postUrl slug 'all'}}">{{{title}}}</a></h2>
-            <p class="lead text-muted">{{{categoryList tags prefix="Posted in "}}}
+            <p class="lead text-muted">{{{tagList tags prefix="Posted in "}}}
               {{#if author.name.first}}by {{author.name.first}}{{/if}}
             </p>
             {{#if image}}<img src="{{{cloudinaryUrl image width=160 height=160 crop='fit' }}}" class="img pull-right">{{/if}}

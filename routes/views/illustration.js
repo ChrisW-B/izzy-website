@@ -8,10 +8,7 @@ const Illustration = (req, res) => {
   const { locals } = res;
   locals.section = 'illustration';
   locals.filters = { ...req.params };
-  locals.data = {
-    posts: [],
-    tags: []
-  };
+  locals.data = { posts: [], tags: [] };
 
   // Load the current category filter
   view.on('init', (next) => {

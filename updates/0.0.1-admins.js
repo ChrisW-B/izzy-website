@@ -19,5 +19,9 @@ exports.create = {
     name: 'Illustration'
   }, {
     name: 'Paperwork'
+  }, {
+    name: 'Comics'
+  }, {
+    name: 'Collabs'
   }]
 };

@@ -10,7 +10,7 @@
         {{# each data.posts.results}}
           <div data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post">
             <h2><a href="{{postUrl slug 'paperwork'}}">{{{title}}}</a></h2>
-            <p class="lead text-muted">{{{categoryList categories prefix="Posted in "}}}
+            <p class="lead text-muted">{{{tagList tags prefix="Posted in "}}}
               {{#if author.name.first}}by {{author.name.first}}{{/if}}
             </p>
             {{#if image}}<img src="{{{cloudinaryUrl image width=160 height=160 crop='fit' }}}" class="img pull-right">{{/if}}
@@ -25,10 +25,10 @@
     <div class="col-sm-4 col-md-3">
       <h2>Categories</h2>
       <div style="margin-top: 70px;" class="list-group">
-        <a href="/paperwork" class="active list-group-item">All Paperwork</a>
+        <a href="/paperwork" class="active list-group-item">All Tags</a>
         {{# each data.tags }}
           <a href="{{categoryUrl 'paperwork' key }}" class="false list-group-item">{{name}}</a>
-          {{/each}}
+        {{/each}}
       </div>
     </div>
   </div>

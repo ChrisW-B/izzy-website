@@ -1,12 +1,12 @@
 const keystone = require('keystone');
 const async = require('async');
 
-const Paperwork = (req, res) => {
+const Collabs = (req, res) => {
   const view = new keystone.View(req, res);
 
   // Init locals
   const { locals } = res;
-  locals.section = 'paperwork';
+  locals.section = 'collabs';
   locals.filters = { ...req.params };
   locals.data = { posts: [], tags: [] };
 
@@ -78,8 +78,8 @@ const Paperwork = (req, res) => {
   });
 
   // Render the view
-  view.render('paperwork');
+  view.render('collabs');
 };
 
-exports = Paperwork;
-module.exports = Paperwork;
+exports = Collabs;
+module.exports = Collabs;
