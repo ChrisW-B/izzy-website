@@ -17,6 +17,8 @@ keystone.init({
   favicon: 'public/favicon.ico',
   views: 'templates/views',
   'view engine': '.hbs',
+  'wysiwyg cloudinary images': true,
+  'wysiwyg additional options': { external_plugins: { uploadimage: '/js/uploadimage/plugin.min.js' } },
 
   'custom engine': handlebars.create({
     layoutsDir: 'templates/views/layouts',
@@ -44,5 +46,8 @@ keystone.set('nav', {
   users: 'users',
   posts: ['posts', 'post-tags']
 });
+
+keystone.set('cloudinary config', process.env.CLOUDINARY_URL);
+keystone.set('cloudinary secure', true);
 
 keystone.start();

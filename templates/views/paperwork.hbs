@@ -13,7 +13,7 @@
             <p class="lead text-muted">{{{tagList tags prefix="Posted in "}}}
               {{#if author.name.first}}by {{author.name.first}}{{/if}}
             </p>
-            {{#if image}}<img src="{{{cloudinaryUrl image width=160 height=160 crop='fit' }}}" class="img pull-right">{{/if}}
+            {{#if images}}<img src="{{{cloudinaryUrl images.[0] width=160 height=160 crop='fit' }}}" class="img pull-right">{{/if}}
             <p>{{{content.brief}}}</p>
             {{#if content.extended}}
               <p class="read-more"><a href="{{postUrl slug 'paperwork'}}">Read more...</a></p>

@@ -9,7 +9,6 @@ const { Types } = keystone.Field;
 
 const Post = new keystone.List('Post', {
   map: { name: 'title' },
-
   autokey: { path: 'slug', from: 'title', unique: true }
 });
 
@@ -24,11 +23,8 @@ Post.add({
   },
   author: { type: Types.Relationship, ref: 'User', index: true },
   publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' } },
-  image: { type: Types.CloudinaryImage },
-  content: {
-    brief: { type: Types.Html, wysiwyg: true, height: 150 },
-    extended: { type: Types.Html, wysiwyg: true, height: 400 }
-  },
+  images: { type: Types.CloudinaryImages },
+  content: { type: Types.Html, wysiwyg: true, height: 450 },
   tags: { type: Types.Relationship, ref: 'PostTag', many: true, createInline: true }
 });
 
