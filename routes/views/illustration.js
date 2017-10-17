@@ -7,6 +7,7 @@ const Illustration = (req, res) => {
   // Init locals
   const { locals } = res;
   locals.section = 'illustration';
+  locals.title = 'Illustrations';
   locals.filters = { ...req.params };
   locals.data = { posts: [], tags: [] };
 
@@ -78,7 +79,7 @@ const Illustration = (req, res) => {
   });
 
   // Render the view
-  view.render('illustration');
+  view.render('grid_page');
 };
 
 exports = Illustration;

@@ -7,6 +7,7 @@ const Paperwork = (req, res) => {
   // Init locals
   const { locals } = res;
   locals.section = 'paperwork';
+  locals.title = 'Paperwork';
   locals.filters = { ...req.params };
   locals.data = { posts: [], tags: [] };
 
@@ -78,7 +79,7 @@ const Paperwork = (req, res) => {
   });
 
   // Render the view
-  view.render('paperwork');
+  view.render('grid_page');
 };
 
 exports = Paperwork;

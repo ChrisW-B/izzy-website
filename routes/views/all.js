@@ -7,6 +7,7 @@ exports = module.exports = function (req, res) {
   // Init locals
   const { locals } = res;
   locals.section = 'all';
+  locals.title = 'All Posts';
   locals.filters = { ...req.params };
   locals.data = { posts: [], tags: [] };
 
@@ -68,5 +69,5 @@ exports = module.exports = function (req, res) {
   });
 
   // Render the view
-  view.render('all');
+  view.render('grid_page');
 };

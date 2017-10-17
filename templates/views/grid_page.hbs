@@ -1,26 +1,26 @@
 {{>header}}
-<h1 class="page-title">Collabs</h1>
+<h1 class="page-title">{{title}}</h1>
 <div class="page-contents">
   <div class="blog">
     {{# each data.posts.results}}
       <div data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post">
         <div class="post-info">
-          <h2><a href="{{postUrl slug 'collabs'}}">{{{title}}}</a></h2>
+          <h2><a href="{{postUrl slug ../section}}">{{{title}}}</a></h2>
           <p>{{{tagList tags prefix="Posted in "}}}
             {{#if author.name.first}}by {{author.name.first}}{{/if}}
           </p>
+          {{#if shortContent}}<p>{{shortContent content slug ../section}}</p>{{/if}}
         </div>
-        {{#if images}}<img src="{{{cloudinaryUrl images.[0] width=375 crop='fit' }}}">{{/if}}
-        <p>{{shortContent content slug 'collabs'}}</p>
+        {{#if images}}<img src="{{{cloudinaryUrl images.[0] width=375 crop='fit'}}}">{{/if}}
       </div>
       {{/each}}
   </div>
   <div>
     <h2>Categories</h2>
     <div>
-      <a href="/collabs">All Tags</a>
+      <a href="/{{section}}">All Tags</a>
       {{# each data.tags }}
-        <a href="{{categoryUrl 'collabs' key}}">{{name}}</a>
+        <a href="{{categoryUrl ../section key}}">{{name}}</a>
         {{/each}}
     </div>
   </div>

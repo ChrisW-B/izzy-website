@@ -7,6 +7,7 @@ const Collabs = (req, res) => {
   // Init locals
   const { locals } = res;
   locals.section = 'collabs';
+  locals.title = 'Collaborations';
   locals.filters = { ...req.params };
   locals.data = { posts: [], tags: [] };
 
@@ -78,7 +79,7 @@ const Collabs = (req, res) => {
   });
 
   // Render the view
-  view.render('collabs');
+  view.render('grid_page');
 };
 
 exports = Collabs;
