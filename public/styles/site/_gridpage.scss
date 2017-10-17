@@ -1,17 +1,15 @@
 .page-contents {
   margin: 0 auto;
-  width: calc(100vw - 80px);
 
   .blog {
-    column-count: 4;
+    margin: 0 auto;
 
     .post {
-      margin: 0;
-      padding: 0;
-      border: 0;
-      vertical-align: baseline;
+      margin: 5px;
+      width: 375px;
 
       & img {
+        height: auto;
         width: 100%;
       }
 

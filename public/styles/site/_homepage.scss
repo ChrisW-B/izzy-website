@@ -13,7 +13,10 @@ html {
     place-items: center;
 
     .menu {
+      display: flex;
       height: 600px;
+      place-content: center;
+      place-items: center;
       position: relative;
       width: 600px;
 
@@ -24,9 +27,14 @@ html {
         content: '';
         display: inline-block;
         height: 600px;
-        position: relative;
+        position: absolute;
         width: 600px;
       }
+    }
+
+    .name {
+      position: relative;
+      width: 500px;
     }
 
     .menu-item {
@@ -44,6 +52,7 @@ html {
 
       & span {
         position: absolute;
+        transition: text-shadow 1s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       &::before {
@@ -53,9 +62,9 @@ html {
         display: inline-block;
         height: 150px;
         opacity: 0;
+        position: absolute;
         transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
         width: 150px;
-        position: absolute;
       }
 
       &:hover {
@@ -76,7 +85,7 @@ html {
         }
       }
 
-      &.collabs {
+      &.illustration {
         right: -35px;
         top: 76px;
         &::before {
@@ -84,7 +93,7 @@ html {
         }
       }
 
-      &.illustration {
+      &.collabs {
         bottom: 76px;
         right: -35px;
       }
@@ -94,12 +103,12 @@ html {
         left: 225px;
       }
 
-      &.contact {
+      &.paperwork {
         bottom: 76px;
         left: -35px;
       }
 
-      &.paperwork {
+      &.contact {
         left: -35px;
         top: 76px;
       }

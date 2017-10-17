@@ -14,7 +14,10 @@ html {
     place-items: center; }
     body .home-container .menu,
     html .home-container .menu {
+      display: flex;
       height: 600px;
+      place-content: center;
+      place-items: center;
       position: relative;
       width: 600px; }
       body .home-container .menu::before,
@@ -25,8 +28,12 @@ html {
         content: '';
         display: inline-block;
         height: 600px;
-        position: relative;
+        position: absolute;
         width: 600px; }
+    body .home-container .name,
+    html .home-container .name {
+      position: relative;
+      width: 500px; }
     body .home-container .menu-item,
     html .home-container .menu-item {
       color: black;
@@ -42,7 +49,8 @@ html {
       width: 150px; }
       body .home-container .menu-item span,
       html .home-container .menu-item span {
-        position: absolute; }
+        position: absolute;
+        transition: text-shadow 1s cubic-bezier(0.4, 0, 0.2, 1); }
       body .home-container .menu-item::before,
       html .home-container .menu-item::before {
         clip-path: polygon(75px 0, 140px 37px, 140px 113px, 75px 150px, 10px 113px, 10px 37px);
@@ -51,9 +59,9 @@ html {
         display: inline-block;
         height: 150px;
         opacity: 0;
-        transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-        width: 150px;
-        position: absolute; }
+        position: absolute;
+        transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 150px; }
       body .home-container .menu-item:hover,
       html .home-container .menu-item:hover {
         color: black; }
@@ -70,27 +78,27 @@ html {
         body .home-container .menu-item.about::before,
         html .home-container .menu-item.about::before {
           background: url("/images/mums.gif") no-repeat center center/cover; }
-      body .home-container .menu-item.collabs,
-      html .home-container .menu-item.collabs {
-        right: -35px;
-        top: 76px; }
-        body .home-container .menu-item.collabs::before,
-        html .home-container .menu-item.collabs::before {
-          background: url("/images/woven_pattern.gif") no-repeat center center/cover; }
       body .home-container .menu-item.illustration,
       html .home-container .menu-item.illustration {
+        right: -35px;
+        top: 76px; }
+        body .home-container .menu-item.illustration::before,
+        html .home-container .menu-item.illustration::before {
+          background: url("/images/woven_pattern.gif") no-repeat center center/cover; }
+      body .home-container .menu-item.collabs,
+      html .home-container .menu-item.collabs {
         bottom: 76px;
         right: -35px; }
       body .home-container .menu-item.comics,
       html .home-container .menu-item.comics {
         bottom: -75px;
         left: 225px; }
-      body .home-container .menu-item.contact,
-      html .home-container .menu-item.contact {
-        bottom: 76px;
-        left: -35px; }
       body .home-container .menu-item.paperwork,
       html .home-container .menu-item.paperwork {
+        bottom: 76px;
+        left: -35px; }
+      body .home-container .menu-item.contact,
+      html .home-container .menu-item.contact {
         left: -35px;
         top: 76px; }
 
@@ -144,16 +152,14 @@ html {
           background: orangered; }
 
 .page-contents {
-  margin: 0 auto;
-  width: calc(100vw - 80px); }
+  margin: 0 auto; }
   .page-contents .blog {
-    column-count: 4; }
+    margin: 0 auto; }
     .page-contents .blog .post {
-      margin: 0;
-      padding: 0;
-      border: 0;
-      vertical-align: baseline; }
+      margin: 5px;
+      width: 375px; }
       .page-contents .blog .post img {
+        height: auto;
         width: 100%; }
       .page-contents .blog .post .post-info {
         position: absolute; }
