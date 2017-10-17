@@ -1,32 +1,27 @@
 {{>header}}
-<div class="container">
-  <h1>Collabs</h1>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-sm-8 col-md-9">
-      <h4 class="text-weight-normal">Showing {{ data.posts.results.length}} post.</h4>
-      <div class="blog">
-        {{# each data.posts.results}}
-          <div data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post">
-            <h2><a href="{{postUrl slug 'illustration'}}">{{{title}}}</a></h2>
-            <p class="lead text-muted">{{{tagList tags prefix="Posted in "}}}
-              {{#if author.name.first}}by {{author.name.first}}{{/if}}
-            </p>
-            {{#if images}}<img src="{{{cloudinaryUrl images.[0] width=160 height=160 crop='fit' }}}" class="img pull-right">{{/if}}
-            <p>{{shortContent content slug 'collabs'}}</p>
-          </div>
-          {{/each}}
+<h1 class="page-title">Collabs</h1>
+<div class="page-contents">
+  <div class="blog">
+    {{# each data.posts.results}}
+      <div data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post">
+        <div class="post-info">
+          <h2><a href="{{postUrl slug 'collabs'}}">{{{title}}}</a></h2>
+          <p>{{{tagList tags prefix="Posted in "}}}
+            {{#if author.name.first}}by {{author.name.first}}{{/if}}
+          </p>
+        </div>
+        {{#if images}}<img src="{{{cloudinaryUrl images.[0] width=375 crop='fit' }}}">{{/if}}
+        <p>{{shortContent content slug 'collabs'}}</p>
       </div>
-    </div>
-    <div class="col-sm-4 col-md-3">
-      <h2>Categories</h2>
-      <div style="margin-top: 70px;" class="list-group">
-        <a href="/illustration" class="active list-group-item">All Tags</a>
-        {{# each data.tags }}
-          <a href="{{categoryUrl 'illustration' key}}" class="false list-group-item">{{name}}</a>
+      {{/each}}
+  </div>
+  <div>
+    <h2>Categories</h2>
+    <div>
+      <a href="/collabs">All Tags</a>
+      {{# each data.tags }}
+        <a href="{{categoryUrl 'collabs' key}}">{{name}}</a>
         {{/each}}
-      </div>
     </div>
   </div>
   {{>pagination}}

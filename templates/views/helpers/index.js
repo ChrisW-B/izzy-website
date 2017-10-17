@@ -204,7 +204,7 @@ module.exports = function () {
   // might be a ghost helper
   // used for pagination urls on blog
   _helpers.pageUrl = function (pageNumber, categorySlug) {
-    return `/${categorySlug}?page=${pageNumber}`;
+    return `?page=${pageNumber}`;
   };
 
   // create the category url for a blog-category page

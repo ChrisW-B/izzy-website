@@ -5,6 +5,7 @@ html {
 
   .home-container {
     display: flex;
+    font-family: 'Poppins', sans-serif;
     height: 100vh;
     min-height: 800px;
     min-width: 900px;
@@ -12,66 +13,95 @@ html {
     place-items: center;
 
     .menu {
-      background-image: url('/images/define-skull-pattern.png');
-      clip-path: polygon(375px 0, 700px 188px, 700px 563px, 375px 750px, 50px 563px, 50px 188px);
-      -webkit-clip-path: polygon(375px 0, 700px 188px, 700px 563px, 375px 750px, 50px 563px, 50px 188px);
-      height: 750px;
+      height: 600px;
       position: relative;
-      width: 750px;
+      width: 600px;
+
+      &::before {
+        background: url("/images/mums_pattern.gif") no-repeat center -50px/120%;
+        -webkit-clip-path: polygon(300px 0, 560px 151px, 560px 451px, 300px 600px, 40px 451px, 40px 151px);
+        clip-path: polygon(300px 0, 560px 151px, 560px 451px, 300px 600px, 40px 451px, 40px 151px);
+        content: '';
+        display: inline-block;
+        height: 600px;
+        position: relative;
+        width: 600px;
+      }
     }
 
     .menu-item {
-      background-image: url('/images/Riga-pattern.jpg');
-      clip-path: polygon(75px 0, 140px 37px, 140px 113px, 75px 150px, 10px 113px, 10px 37px);
-      -webkit-clip-path: polygon(75px 0, 140px 37px, 140px 113px, 75px 150px, 10px 113px, 10px 37px);
+      color: black;
+      display: flex;
       flex: 0 0;
+      font-size: 1.15em;
       height: 150px;
-      opacity: 0.5;
+      place-content: center;
+      place-items: center;
       position: absolute;
-      transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      text-transform: uppercase;
       width: 150px;
 
-      p {
-        color: red;
-        font-size: 1.2em;
+      & span {
         position: absolute;
-        text-align: center;
-        top: 50px;
-        width: 100%;
+      }
+
+      &::before {
+        clip-path: polygon(75px 0, 140px 37px, 140px 113px, 75px 150px, 10px 113px, 10px 37px);
+        -webkit-clip-path: polygon(75px 0, 140px 37px, 140px 113px, 75px 150px, 10px 113px, 10px 37px);
+        content: '';
+        display: inline-block;
+        height: 150px;
+        opacity: 0;
+        transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 150px;
+        position: absolute;
       }
 
       &:hover {
-        opacity: 1;
+        color: black;
+        &::before {
+          opacity: 1;
+        }
+        & span {
+          text-shadow: 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white;
+        }
       }
 
       &.about {
-        left: 300px;
-        top: 0;
+        left: 225px;
+        top: -75px;
+        &::before {
+          background: url("/images/mums.gif") no-repeat center center/cover;
+        }
       }
 
       &.collabs {
-        right: 40px;
-        top: 150px;
+        right: -35px;
+        top: 76px;
+        &::before {
+          background: url("/images/woven_pattern.gif") no-repeat center center/cover;
+        }
       }
 
       &.illustration {
-        bottom: 150px;
-        right: 40px;
+        bottom: 76px;
+        right: -35px;
       }
 
       &.comics {
-        bottom: 0;
-        left: 300px;
-      }
-
-      &.paperwork {
-        left: 40px;
-        top: 150px;
+        bottom: -75px;
+        left: 225px;
       }
 
       &.contact {
-        bottom: 150px;
-        left: 40px;
+        bottom: 76px;
+        left: -35px;
+      }
+
+      &.paperwork {
+        left: -35px;
+        top: 76px;
       }
     }
   }
