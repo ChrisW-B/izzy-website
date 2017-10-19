@@ -3,12 +3,12 @@ const keystone = require('keystone');
 const { Types } = keystone.Field;
 
 /**
- * User Model
+ * Member Model
  * ==========
  */
-const User = new keystone.List('User');
+const Member = new keystone.List('Member');
 
-User.add({
+Member.add({
   name: { type: Types.Name, required: true, index: true },
   email: {
     type: Types.Email,
@@ -23,17 +23,17 @@ User.add({
 });
 
 // Provide access to Keystone
-User.schema.virtual('canAccessKeystone').get(function () {
+Member.schema.virtual('canAccessKeystone').get(function () {
   return this.isAdmin;
 });
 
 /**
  * Relationships
  */
-User.relationship({ ref: 'Post', path: 'posts', refPath: 'author' });
+Member.relationship({ ref: 'Post', path: 'posts', refPath: 'author' });
 
 /**
  * Registration
  */
-User.defaultColumns = 'name, email, isAdmin';
-User.register();
+Member.defaultColumns = 'name, email, isAdmin';
+Member.register();

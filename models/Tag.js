@@ -1,18 +1,18 @@
 const keystone = require('keystone');
 
 /**
- * PostTag Model
+ * Tag Model
  * ==================
  */
 
-const PostTag = new keystone.List('PostTag', {
+const Tag = new keystone.List('Tag', {
   autokey: { from: 'name', path: 'key', unique: true }
 });
 
-PostTag.add({
+Tag.add({
   name: { type: String, required: true }
 });
 
-PostTag.relationship({ ref: 'Post', path: 'posts', refPath: 'tags' });
+Tag.relationship({ ref: 'Post', path: 'posts', refPath: 'tags' });
 
-PostTag.register();
+Tag.register();

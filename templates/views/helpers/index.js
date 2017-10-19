@@ -182,7 +182,6 @@ module.exports = function () {
     // if we dont pass in a context and just kwargs
     // then `this` refers to our default scope block and kwargs
     // are stored in context.hash
-    console.log({ context })
     if (!options && context.hasOwnProperty('hash')) {
       // strategy is to place context kwargs into options
       options = context;

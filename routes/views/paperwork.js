@@ -21,7 +21,7 @@ const Paperwork = (req, res) => {
 
   // Load all tags
   view.on('init', (next) => {
-    keystone.list('PostTag').model.find().sort('name').exec((err, results) => {
+    keystone.list('Tag').model.find().sort('name').exec((err, results) => {
       if (err || !results.length) {
         return next(err);
       }
@@ -43,7 +43,7 @@ const Paperwork = (req, res) => {
   // Load the current tag filter
   view.on('init', (next) => {
     if (req.params.tag) {
-      keystone.list('PostTag').model.findOne({ key: locals.filters.tag }).exec((err, result) => {
+      keystone.list('Tag').model.findOne({ key: locals.filters.tag }).exec((err, result) => {
         locals.data.tag = result;
         next(err);
       });

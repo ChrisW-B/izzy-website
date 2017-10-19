@@ -8,7 +8,7 @@ const { Types } = keystone.Field;
  */
 
 const Image = new keystone.List('Image', {
-  map: { name: 'name' },
+  map: { name: 'name', image: 'image' },
   autokey: { path: 'slug', from: 'name', unique: true }
 });
 
@@ -18,9 +18,16 @@ Image.add({
     type: Types.CloudinaryImage,
     autoCleanup: true,
     required: true,
-    initial: false
+    initial: true
   },
-  caption: { type: Types.Textarea, height: 150 }
+  caption: {
+    type: Types.Html,
+    wysiwyg: true,
+    initial: true,
+    height: 250
+  }
 });
+Image.relationship({ ref: 'Post', path: 'posts', refPath: 'images' });
+Image.defaultColumns = 'name, image|20%, caption';
 
 Image.register();

@@ -31,7 +31,7 @@ keystone.init({
   'auto update': true,
   'session store': 'mongo',
   auth: true,
-  'user model': 'User'
+  'user model': 'Member'
 });
 keystone.import('models');
 keystone.set('locals', {
@@ -43,8 +43,8 @@ keystone.set('locals', {
 keystone.set('routes', require('./routes'));
 
 keystone.set('nav', {
-  users: 'users',
-  posts: ['posts', 'post-tags']
+  members: 'members',
+  posts: ['posts', 'images', 'tags']
 });
 
 keystone.set('cloudinary config', process.env.CLOUDINARY_URL);

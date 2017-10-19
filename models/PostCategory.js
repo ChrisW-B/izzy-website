@@ -7,7 +7,9 @@ const keystone = require('keystone');
 
 const PostCategory = new keystone.List('PostCategory', {
   autokey: { from: 'name', path: 'key', unique: true },
-  hidden: true
+  hidden: true,
+  noCreate: true,
+  noDelete: true
 });
 
 PostCategory.add({
