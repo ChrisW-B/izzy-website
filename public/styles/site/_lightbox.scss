@@ -29,6 +29,10 @@
       padding: 0;
       width: 100vw;
 
+      .dummy-slide {
+        width: 11rem;
+      }
+
       .photo-wrapper {
         display: inline-block;
         margin: 0;
@@ -48,6 +52,7 @@
         }
 
         .photo {
+          border-radius: 0.3rem;
           max-height: calc(100vh - 6rem);
           max-width: calc(100vw - 6rem);
         }

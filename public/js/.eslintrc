@@ -1,0 +1,22 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["eslint:recommended", "jquery", "airbnb-base"],
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
+  "env": {
+    "browser": true,
+    "jquery": true
+  },
+  "rules": {
+    "comma-dangle": [2, "never"],
+    "eol-last": [1, "never"],
+    "func-names": "off",
+    "no-console": ["warn"],
+    "no-multi-assign": "off",
+    "no-param-reassign": "off",
+    "no-plusplus": "off",
+    "no-shadow": "off",
+    "quotes": [1, "single"]
+  }
+}

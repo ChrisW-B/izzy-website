@@ -25,7 +25,9 @@ Post.add({
   publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' } },
   images: { type: Types.CloudinaryImages },
   content: { type: Types.Html, wysiwyg: true, height: 450 },
-  tags: { type: Types.Relationship, ref: 'PostTag', many: true, createInline: true }
+  tags: {
+    type: Types.Relationship, ref: 'PostTag', many: true, createInline: true
+  }
 });
 
 Post.schema.virtual('content.full').get(() => this.content.extended || this.content.brief);
