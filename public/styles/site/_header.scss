@@ -1,12 +1,14 @@
-#header {
-  font-family: 'Poppins', sans-serif;
+.header {
+  font-family: $font-poppins;
+  position: relative;
   text-transform: uppercase;
 
   .mini-menu {
     fill: orange;
     position: fixed;
-    right: 20px;
-    top: 20px;
+    right: 2rem;
+    top: 2rem;
+    z-index: 2;
 
     &:hover {
       .menu-items {
@@ -15,6 +17,8 @@
     }
 
     .menu-items {
+      background-color: white;
+      font-size: 2rem;
       list-style: none;
       margin: 0;
       opacity: 0;
@@ -22,7 +26,7 @@
       position: absolute;
       right: 0;
       top: 0;
-      transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: opacity 1s $material-animation;
 
       &:hover {
         opacity: 1;
@@ -31,15 +35,13 @@
       & .menu-item {
         border-bottom: 0;
         display: flex;
-        min-height: 40px;
-        min-width: 150px;
-        font-size: 1.3em;
+        min-width: 15rem;
 
         a {
           background: transparent;
           color: black;
           flex: 1;
-          padding: 10px;
+          padding: 1rem;
           text-align: right;
           text-decoration: none;
         }

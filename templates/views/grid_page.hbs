@@ -3,27 +3,34 @@
 <div class="page-contents">
   <div class="blog">
     {{# each data.posts.results}}
-      <div data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post">
-        <div class="post-info">
-          <h2><a href="{{postUrl slug ../section}}">{{{title}}}</a></h2>
-          <p>{{{tagList tags prefix="Posted in "}}}
-            {{#if author.name.first}}by {{author.name.first}}{{/if}}
-          </p>
-          {{#if shortContent}}<p>{{shortContent content slug ../section}}</p>{{/if}}
+      <button data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post" data-featherlight=".{{slug}}" onclick="createSlideshow('{{slug}}')">
+        <div class="post-images">
+          {{# each images as |image|}}
+            <img src="{{{cloudinaryUrl image width=375 crop='fit'}}}" />
+            {{/each}}
         </div>
-        {{#if images}}<img src="{{{cloudinaryUrl images.[0] width=375 crop='fit'}}}">{{/if}}
-      </div>
+        <div class="post-info">
+          <p class="title">{{{title}}}</p>
+        </div>
+      </button>
       {{/each}}
   </div>
-  <div>
-    <h2>Categories</h2>
-    <div>
-      <a href="/{{section}}">All Tags</a>
-      {{# each data.tags }}
-        <a href="{{categoryUrl ../section key}}">{{name}}</a>
-        {{/each}}
-    </div>
-  </div>
   {{>pagination}}
+  {{# each data.posts.results}}
+    <div class="ajaxcontent lightbox">
+      <ul class="lightbox-images {{slug}}">
+        {{# each images as |image|}}
+          <li class="photo-wrapper">
+            <img class="photo" src="{{{cloudinaryUrl image width=1400 height=1400 crop='fit'}}}"></img>
+            <div class="content">
+              <h2><a href="{{postUrl ../slug ../../section}}">{{{../title}}}</a></h2>
+              <p>{{shortContent ../content ../slug 'comics'}}</p>
+              <a href="{{postUrl ../slug ../../section}}">Permalink</a>
+            </div>
+          </li>
+          {{/each}}
+      </ul>
+    </div>
+    {{/each}}
 </div>
-{{>masonry}}
+{{>grid}}

@@ -1,11 +1,8 @@
-@import "site/variables";
-
-@import "site/layout";
-
-@import "site/homepage";
-
-@import "site/header";
-
-@import "site/gridpage";
-
 @import url('https://fonts.googleapis.com/css?family=Poppins:500');
+
+html,
+body {
+  font-size: 10px;
+  margin: 0;
+  padding: 0;
+}
