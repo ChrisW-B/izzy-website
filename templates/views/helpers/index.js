@@ -158,6 +158,15 @@ module.exports = function () {
       : new hbs.SafeString(content);
   }
 
+  _helpers.generateImageArray = function (images, title, permalink, content, options) {
+    const urls = images.map(image => ({
+      src: _helpers.cloudinaryUrl(image, options),
+      title,
+      permalink,
+      caption: image.caption ? image.caption : content
+    }));
+    return JSON.stringify(urls);
+  }
   // ### CloudinaryUrl Helper
   // Direct support of the cloudinary.url method from Handlebars (see
   // cloudinary package documentation for more details).
@@ -168,10 +177,12 @@ module.exports = function () {
   //
   // Returns an src-string for a cloudinary image
 
-  _helpers.cloudinaryUrl = function (context, options) {
+  _helpers.cloudinaryUrl = function (imageData, options) {
+    let context = imageData.image;
     // if we dont pass in a context and just kwargs
     // then `this` refers to our default scope block and kwargs
     // are stored in context.hash
+    console.log({ context })
     if (!options && context.hasOwnProperty('hash')) {
       // strategy is to place context kwargs into options
       options = context;

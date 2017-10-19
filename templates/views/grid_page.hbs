@@ -3,7 +3,7 @@
 <div class="page-contents">
   <div class="blog">
     {{# each data.posts.results}}
-      <button data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post" data-featherlight=".{{slug}}" onclick="createSlideshow('{{slug}}')">
+      <button data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post" data-featherlight=".{{slug}}" onclick='createSlideshow("{{slug}}", {{{generateImageArray images title permalink content width=1400 height=1400 crop='fit'}}})'>
         <div class="post-images">
           {{# each images as |image|}}
             <img src="{{{cloudinaryUrl image width=375 crop='fit'}}}" />
@@ -18,18 +18,7 @@
   {{>pagination}}
   {{# each data.posts.results}}
     <div class="ajaxcontent lightbox">
-      <ul class="lightbox-images {{slug}}">
-        {{# each images as |image|}}
-          <li class="photo-wrapper">
-            <img class="photo" src="{{{cloudinaryUrl image width=1400 height=1400 crop='fit'}}}"></img>
-            <div class="content">
-              <h2><a href="{{postUrl ../slug ../../section}}">{{{../title}}}</a></h2>
-              <p>{{shortContent ../content ../slug 'comics'}}</p>
-              <a href="{{postUrl ../slug ../../section}}">Permalink</a>
-            </div>
-          </li>
-          {{/each}}
-      </ul>
+      <ul class="lightbox-images {{slug}}" />
     </div>
     {{/each}}
 </div>

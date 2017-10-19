@@ -88,6 +88,7 @@
         transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         width: 100%; }
         .page-contents .blog .post .post-info .title {
+          font-family: sans-serif;
           align-self: flex-end;
           background: white;
           color: black;
@@ -95,7 +96,8 @@
           justify-self: flex-end;
           max-width: 80%;
           padding: 0.5rem;
-          text-align: left; }
+          text-align: left;
+          font-weight: 900; }
       .page-contents .blog .post:hover .post-info {
         opacity: 1; }
       @media screen and (min-width: 0) {

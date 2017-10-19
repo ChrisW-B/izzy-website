@@ -3,7 +3,7 @@ const keystone = require('keystone');
 const { Types } = keystone.Field;
 
 /**
- * Illustration Model
+ * Post Model
  * ==========
  */
 
@@ -23,10 +23,18 @@ Post.add({
   },
   author: { type: Types.Relationship, ref: 'User', index: true },
   publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' } },
-  images: { type: Types.CloudinaryImages },
+  images: {
+    type: Types.Relationship,
+    ref: 'Image',
+    many: true,
+    createInline: true
+  },
   content: { type: Types.Html, wysiwyg: true, height: 450 },
   tags: {
-    type: Types.Relationship, ref: 'PostTag', many: true, createInline: true
+    type: Types.Relationship,
+    ref: 'PostTag',
+    many: true,
+    createInline: true
   }
 });
 

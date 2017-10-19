@@ -64,7 +64,7 @@ const Illustration = (req, res) => {
         }
       })
       .sort('-publishedDate')
-      .populate('author tags category');
+      .populate('author tags category images');
 
     q.where('category').in([locals.data.category]);
 
