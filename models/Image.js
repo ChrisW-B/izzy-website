@@ -8,7 +8,7 @@ const { Types } = keystone.Field;
  */
 
 const Image = new keystone.List('Image', {
-  map: { name: 'name', image: 'image' },
+  map: { name: 'name' },
   autokey: { path: 'slug', from: 'name', unique: true }
 });
 

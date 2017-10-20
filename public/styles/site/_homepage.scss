@@ -1,111 +1,160 @@
 .home-container {
   display: flex;
   font-family: $font-poppins;
-  height: 100vh;
-  min-height: 80rem;
-  min-width: 90rem;
-  place-content: center;
-  place-items: center;
 
   .menu {
+    align-items: center;
     display: flex;
-    height: 60rem;
-    place-content: center;
-    place-items: center;
-    position: relative;
-    width: 60rem;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-evenly;
+    align-items: stretch;
+    text-align: center;
+    width: 100%;
 
     &::before {
-      background: url("/images/mums_pattern.gif") no-repeat center -5rem/120%;
-      -webkit-clip-path: polygon(30rem 0, 56rem 15.1rem, 56rem 45.1rem, 30rem 60rem, 4rem 45.1rem, 4rem 15.1rem);
-      clip-path: polygon(30rem 0, 56rem 15.1rem, 56rem 45.1rem, 30rem 60rem, 4rem 45.1rem, 4rem 15.1rem);
+      background: url("/images/mums_pattern.gif") no-repeat center center;
       content: '';
       display: inline-block;
+      height: 100vh;
+      position: absolute;
+      width: 100vw;
+    }
+    .name {
+      align-self: center;
+      max-width: 95vw;
+      position: relative;
+    }
+
+    .menu-item {
+      color: rgb(8, 0, 61);
+      display: flex;
+      flex: 1;
+      font-size: 3.8rem;
+      place-content: center;
+      place-items: center;
+      text-decoration: none;
+      text-shadow: 0 0 0.5rem white, 0 0 0.5rem white, 0 0 0.5rem white;
+      text-transform: uppercase;
+      position: relative;
+
+      & span {
+        position: relative;
+        transition: text-shadow 1s $material-animation;
+      }
+
+      &::before {
+        background-position: center center;
+        background-repeat: repeat;
+        background-size: 40%;
+        content: '';
+        display: inline-block;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transition: opacity 1s $material-animation;
+      }
+
+      &:hover {
+        &::before {
+          opacity: 1;
+        }
+        & span {
+          text-shadow: 0 0 0.5rem white, 0 0 0.5rem white, 0 0 0.5rem white, 0 0 0.5rem white, 0 0 0.5rem white;
+        }
+      }
+
+      &.about {
+        &::before {
+          background-image: url("/images/mums.gif");
+        }
+      }
+
+      &.illustration {
+        &::before {
+          background-image: url("/images/woven_pattern.gif");
+        }
+      }
+    }
+  }
+
+  @media (min-width: 600px) {
+    height: 100vh;
+    min-height: 80rem;
+    min-width: 40rem;
+    place-content: center;
+    place-items: center;
+
+    .menu {
       height: 60rem;
       position: absolute;
       width: 60rem;
-    }
-  }
 
-  .name {
-    position: relative;
-    width: 50rem;
-  }
-
-  .menu-item {
-    color: rgb(8, 0, 61);
-    display: flex;
-    flex: 0 0;
-    font-size: 1.8rem;
-    height: 15rem;
-    place-content: center;
-    place-items: center;
-    position: absolute;
-    text-decoration: none;
-    text-shadow: 0 00.5rem white, 0 00.5rem white, 0 00.5rem white;
-    text-transform: uppercase;
-    width: 15rem;
-
-    & span {
-      position: absolute;
-      transition: text-shadow 1s $material-animation;
-    }
-
-    &::before {
-      clip-path: polygon(7.5rem 0, 14rem 3.7rem, 14rem 11.3rem, 7.5rem 15rem, 1rem 11.3rem, 1rem 3.7rem);
-      -webkit-clip-path: polygon(7.5rem 0, 14rem 3.7rem, 14rem 11.3rem, 7.5rem 15rem, 1rem 11.3rem, 1rem 3.7rem);
-      content: '';
-      display: inline-block;
-      height: 15rem;
-      opacity: 0;
-      position: absolute;
-      transition: opacity 1s $material-animation;
-      width: 15rem;
-    }
-
-    &:hover {
       &::before {
-        opacity: 1;
+        background: url("/images/mums_pattern.gif") no-repeat center -5rem/120%;
+        -webkit-clip-path: polygon(30rem 0, 56rem 15.1rem, 56rem 45.1rem, 30rem 60rem, 4rem 45.1rem, 4rem 15.1rem);
+        clip-path: polygon(30rem 0, 56rem 15.1rem, 56rem 45.1rem, 30rem 60rem, 4rem 45.1rem, 4rem 15.1rem);
+        height: 60rem;
+        position: absolute;
+        width: 60rem;
       }
-      & span {
-        text-shadow: 0 00.5rem white, 0 00.5rem white, 0 00.5rem white, 0 00.5rem white, 0 00.5rem white;
+
+      .name {
+        position: relative;
+        width: 50rem;
+        flex: 0 0;
       }
-    }
 
-    &.about {
-      left: 22.5rem;
-      top: -7.5rem;
-      &::before {
-        background: url("/images/mums.gif") no-repeat center center/cover;
+      .menu-item {
+        height: 15rem;
+        position: absolute;
+        width: 15rem;
+        font-size: 1.8rem;
+
+        &::before {
+          clip-path: polygon(7.5rem 0, 14rem 3.7rem, 14rem 11.3rem, 7.5rem 15rem, 1rem 11.3rem, 1rem 3.7rem);
+          -webkit-clip-path: polygon(7.5rem 0, 14rem 3.7rem, 14rem 11.3rem, 7.5rem 15rem, 1rem 11.3rem, 1rem 3.7rem);
+          height: 15rem;
+          opacity: 0;
+          position: absolute;
+          width: 15rem;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+
+        &.about {
+          left: 22.5rem;
+          top: -7.5rem;
+        }
+
+        &.illustration {
+          right: -3.5rem;
+          top: 7.6rem;
+        }
+
+        &.collabs {
+          bottom: 7.6rem;
+          right: -3.5rem;
+        }
+
+        &.comics {
+          bottom: -7.5rem;
+          left: 22.5rem;
+        }
+
+        &.paperwork {
+          bottom: 7.6rem;
+          left: -3.5rem;
+        }
+
+        &.contact {
+          left: -3.5rem;
+          top: 7.6rem;
+        }
       }
-    }
-
-    &.illustration {
-      right: -3.5rem;
-      top: 7.6rem;
-      &::before {
-        background: url("/images/woven_pattern.gif") no-repeat center center/cover;
-      }
-    }
-
-    &.collabs {
-      bottom: 7.6rem;
-      right: -3.5rem;
-    }
-
-    &.comics {
-      bottom: -7.5rem;
-      left: 22.5rem;
-    }
-
-    &.paperwork {
-      bottom: 7.6rem;
-      left: -3.5rem;
-    }
-
-    &.contact {
-      left: -3.5rem;
-      top: 7.6rem;
     }
   }
 }

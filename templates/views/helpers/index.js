@@ -158,11 +158,11 @@ module.exports = function () {
       : new hbs.SafeString(content);
   }
 
-  _helpers.generateImageArray = function (images, title, permalink, content, options) {
+  _helpers.generateImageArray = function (images, title, section, slug, content, options) {
     const urls = images.map(image => ({
       src: _helpers.cloudinaryUrl(image, options),
       title,
-      permalink,
+      permalink: `/${section}/post/${slug}`,
       caption: image.caption ? image.caption : content
     }));
     return JSON.stringify(urls);
