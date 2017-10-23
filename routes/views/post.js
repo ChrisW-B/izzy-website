@@ -19,6 +19,7 @@ exports = module.exports = function (req, res) {
 
     q.exec((err, result) => {
       locals.data.post = result;
+      locals.title = result.title;
       next(err);
     });
   });

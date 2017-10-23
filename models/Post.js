@@ -38,7 +38,9 @@ Post.add({
     type: Types.Relationship,
     ref: 'Image',
     many: true,
-    createInline: true
+    createInline: true,
+    required: true,
+    initial: true
   },
   content: { type: Types.Html, wysiwyg: true, height: 450 },
   tags: {
@@ -47,6 +49,16 @@ Post.add({
     many: true,
     createInline: true
   }
+});
+
+Post.schema.methods.isPublished = () =>
+  this.state === 'published';
+
+Post.schema.pre('save', (next) => {
+  if (this.isModified('state') && this.isPublished() && !this.publishedAt) {
+    this.publishedAt = new Date();
+  }
+  next();
 });
 
 Post.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';

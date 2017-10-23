@@ -1,0 +1,23 @@
+.about-container {
+  display: flex;
+  flex-direction: row;
+  font-family: $font-poppins;
+  font-size: 1.8rem;
+  margin: 2rem;
+
+  .portrait {
+    width: 30rem;
+  }
+
+  .content {
+    flex: 1;
+  }
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    .portrait {
+      align-self: center;
+      width: 15rem;
+    }
+  }
+}

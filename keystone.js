@@ -17,9 +17,6 @@ keystone.init({
   favicon: 'public/favicon.ico',
   views: 'templates/views',
   'view engine': '.hbs',
-  'wysiwyg cloudinary images': true,
-  'wysiwyg additional options': { external_plugins: { uploadimage: '/js/uploadimage/plugin.min.js' } },
-
   'custom engine': handlebars.create({
     layoutsDir: 'templates/views/layouts',
     partialsDir: 'templates/views/partials',
@@ -27,7 +24,6 @@ keystone.init({
     helpers: new Helpers(),
     extname: '.hbs'
   }).engine,
-
   'auto update': true,
   'session store': 'mongo',
   auth: true,
@@ -44,7 +40,8 @@ keystone.set('routes', require('./routes'));
 
 keystone.set('nav', {
   members: 'members',
-  posts: ['posts', 'images', 'tags']
+  posts: ['posts', 'images', 'tags'],
+  'Static Pages': ['pages']
 });
 
 keystone.set('cloudinary config', process.env.CLOUDINARY_URL);

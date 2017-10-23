@@ -15,6 +15,9 @@ exports.create = {
     password: 'TempPass',
     isAdmin: true
   }],
+  Page: [{ name: 'About', body: '', type: 'about' },
+    { name: 'Contact', body: '', type: 'contact' }
+  ],
   PostCategory: [{
     name: 'Illustration'
   }, {

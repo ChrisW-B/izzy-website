@@ -21,10 +21,10 @@ exports = module.exports = function (app) {
   app.get('/contact', routes.views.contact);
 
   app.get('/all/:tag?', routes.views.all);
-  app.get('/illustration/:tag?', routes.views.illustration);
-  app.get('/paperwork/:tag?', routes.views.paperwork);
-  app.get('/collabs/:tag?', routes.views.collabs);
-  app.get('/comics/:tag?', routes.views.comics);
+  app.get('/illustration/:tag?', (req, res) => routes.views.grid_page(req, res, { section: 'illustration', title: 'Illustrations' }));
+  app.get('/paperwork/:tag?', (req, res) => routes.views.grid_page(req, res, { section: 'paperwork', title: 'Paperwork' }));
+  app.get('/collabs/:tag?', (req, res) => routes.views.grid_page(req, res, { section: 'collabs', title: 'Collaborations' }));
+  app.get('/comics/:tag?', (req, res) => routes.views.grid_page(req, res, { section: 'comics', title: 'Comics' }));
 
   app.get('/:type/post/:post', routes.views.post);
 };

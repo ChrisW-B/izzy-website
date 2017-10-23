@@ -29,10 +29,14 @@ const Comics = (req, res) => {
 
       // Load the counts for each tags
       return async.each(locals.data.tags, (tag, next) => {
-        keystone.list('Post').model.count().where('tags').in([tag.id]).exec((err, count) => {
-          tag.postCount = count;
-          next(err);
-        });
+        keystone.list('Post').model
+          .count()
+          .where('category')
+          .in([locals.data.category])
+          .exec((err, count) => {
+            tag.postCount = count;
+            next(err);
+          });
       }, (err) => {
         next(err);
       });

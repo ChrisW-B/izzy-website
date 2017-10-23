@@ -1,18 +1,40 @@
 .header {
+  align-items: center;
+  display: flex;
   font-family: $font-poppins;
+  justify-content: space-between;
+  padding: 2rem;
   position: relative;
-  text-transform: uppercase;
+
+  .name {
+    min-width: 20rem;
+    width: 30rem;
+    &>img {
+      width: 100%;
+    }
+  }
+
+  .page-title {
+    font-size: 2.6rem;
+    margin: 0;
+    text-align: center;
+
+    @media (max-width: 850px) {
+      flex: 1;
+    }
+  }
 
   .mini-menu {
     fill: orange;
-    position: fixed;
-    right: 2rem;
-    top: 2rem;
-    z-index: 2;
+    min-width: 20rem;
+    position: relative;
+    text-align: right;
+    width: 30rem;
 
     &:hover {
       .menu-items {
         opacity: 1;
+        z-index: 3;
       }
     }
 
@@ -73,6 +95,18 @@
           background: orangered;
         }
       }
+    }
+  }
+
+  @media (max-width: 500px) {
+    flex-flow: row wrap;
+    padding: 0.5rem;
+    .name {
+      flex: 1 1 auto;
+    }
+    .mini-menu {
+      min-width: unset;
+      width: unset;
     }
   }
 }

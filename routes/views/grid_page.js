@@ -1,13 +1,13 @@
 const keystone = require('keystone');
 const async = require('async');
 
-const Collabs = (req, res) => {
+const Collabs = (req, res, info) => {
   const view = new keystone.View(req, res);
 
   // Init locals
   const { locals } = res;
-  locals.section = 'collabs';
-  locals.title = 'Collaborations';
+  locals.section = info.section;
+  locals.title = info.title;
   locals.filters = { ...req.params };
   locals.data = { posts: [], tags: [] };
 
@@ -30,10 +30,14 @@ const Collabs = (req, res) => {
 
       // Load the counts for each tags
       return async.each(locals.data.tags, (tag, next) => {
-        keystone.list('Post').model.count().where('tags').in([tag.id]).exec((err, count) => {
-          tag.postCount = count;
-          next(err);
-        });
+        keystone.list('Post').model
+          .count()
+          .where('category')
+          .in([locals.data.category])
+          .exec((err, count) => {
+            tag.postCount = count;
+            next(err);
+          });
       }, (err) => {
         next(err);
       });
@@ -60,13 +64,12 @@ const Collabs = (req, res) => {
         perPage: 10,
         maxPages: 10,
         filters: {
-          state: 'published'
+          state: 'published',
+          category: locals.data.category
         }
       })
       .sort('-publishedDate')
       .populate('author tags category images');
-
-    q.where('category').in([locals.data.category]);
 
     if (locals.data.tag) {
       q.where('tags').in([locals.data.tag]);

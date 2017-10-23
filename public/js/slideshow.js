@@ -9,7 +9,7 @@ const createSlide = (src, permalink = '', title = '', caption = '') =>
   <li class="photo-wrapper">
     <img class="photo" src="${src}"></img>
     <div class="content">
-      <h2><a href="${permalink}">${title}</a></h2>
+      <h2>${title}</h2>
       <p>${caption}</p>
       <a href="${permalink}">Permalink</a>
     </div>

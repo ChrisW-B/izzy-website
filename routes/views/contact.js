@@ -4,10 +4,17 @@ exports = module.exports = function (req, res) {
   const view = new keystone.View(req, res);
   const { locals } = res;
 
-  // locals.section is used to set the currently selected
-  // item in the header navigation.
-  locals.section = 'contact';
+  locals.section = 'about';
+
+  view.on('init', (next) => {
+    keystone.list('Page').model.findOne({ type: 'contact' })
+      .exec((err, result) => {
+        locals.data = result;
+        locals.title = result.name;
+        next(err);
+      });
+  });
 
   // Render the view
-  view.render('contact');
+  view.render('about');
 };
