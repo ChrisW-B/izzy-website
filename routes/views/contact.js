@@ -10,7 +10,7 @@ exports = module.exports = function (req, res) {
     keystone.list('Page').model.findOne({ type: 'contact' })
       .exec((err, result) => {
         locals.data = result;
-        locals.title = result.name;
+        locals.title = result.title;
         next(err);
       });
   });

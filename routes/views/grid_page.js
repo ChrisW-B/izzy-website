@@ -1,7 +1,7 @@
 const keystone = require('keystone');
 const async = require('async');
 
-const Collabs = (req, res, info) => {
+const collaborations = (req, res, info) => {
   const view = new keystone.View(req, res);
 
   // Init locals
@@ -10,14 +10,6 @@ const Collabs = (req, res, info) => {
   locals.title = info.title;
   locals.filters = { ...req.params };
   locals.data = { posts: [], tags: [] };
-
-  // Load the current category filter
-  view.on('init', (next) => {
-    keystone.list('PostCategory').model.findOne({ key: locals.section }).exec((err, result) => {
-      locals.data.category = result;
-      next(err);
-    });
-  });
 
   // Load all tags
   view.on('init', (next) => {
@@ -33,7 +25,7 @@ const Collabs = (req, res, info) => {
         keystone.list('Post').model
           .count()
           .where('category')
-          .in([locals.data.category])
+          .in([locals.section])
           .exec((err, count) => {
             tag.postCount = count;
             next(err);
@@ -56,6 +48,8 @@ const Collabs = (req, res, info) => {
     }
   });
 
+  console.log({ section: locals.section });
+
   // Load the posts
   view.on('init', (next) => {
     const q = keystone.list('Post')
@@ -65,11 +59,11 @@ const Collabs = (req, res, info) => {
         maxPages: 10,
         filters: {
           state: 'published',
-          category: locals.data.category
+          category: locals.section
         }
       })
       .sort('-publishedDate')
-      .populate('author tags category images');
+      .populate('author tags images');
 
     if (locals.data.tag) {
       q.where('tags').in([locals.data.tag]);
@@ -85,5 +79,5 @@ const Collabs = (req, res, info) => {
   view.render('grid_page');
 };
 
-exports = Collabs;
-module.exports = Collabs;
+exports = collaborations;
+module.exports = collaborations;

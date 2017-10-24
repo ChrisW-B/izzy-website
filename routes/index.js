@@ -21,9 +21,9 @@ exports = module.exports = function (app) {
   app.get('/contact', routes.views.contact);
 
   app.get('/all/:tag?', routes.views.all);
-  app.get('/illustration/:tag?', (req, res) => routes.views.grid_page(req, res, { section: 'illustration', title: 'Illustrations' }));
+  app.get('/illustrations/:tag?', (req, res) => routes.views.grid_page(req, res, { section: 'illustrations', title: 'Illustrations' }));
   app.get('/paperwork/:tag?', (req, res) => routes.views.grid_page(req, res, { section: 'paperwork', title: 'Paperwork' }));
-  app.get('/collabs/:tag?', (req, res) => routes.views.grid_page(req, res, { section: 'collabs', title: 'Collaborations' }));
+  app.get('/collaborations/:tag?', (req, res) => routes.views.grid_page(req, res, { section: 'collaborations', title: 'Collaborations' }));
   app.get('/comics/:tag?', (req, res) => routes.views.grid_page(req, res, { section: 'comics', title: 'Comics' }));
 
   app.get('/:type/post/:post', routes.views.post);

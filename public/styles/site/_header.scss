@@ -75,11 +75,11 @@
           background: blue;
         }
 
-        &.collabs:hover {
+        &.collaborations:hover {
           background: green;
         }
 
-        &.illustration:hover {
+        &.illustrations:hover {
           background: purple;
         }
 
@@ -101,11 +101,16 @@
   @media (max-width: 500px) {
     flex-flow: row wrap;
     padding: 0.5rem;
+    .page-title {
+      order: 3;
+    }
     .name {
-      flex: 1 1 auto;
+      flex: 1 1 75%;
+      order: 0;
     }
     .mini-menu {
       min-width: unset;
+      order: 1;
       width: unset;
     }
   }

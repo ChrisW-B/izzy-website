@@ -10,13 +10,6 @@ const Comics = (req, res) => {
   locals.filters = { ...req.params };
   locals.data = { posts: [], tags: [] };
 
-  // Load the current category filter
-  view.on('init', (next) => {
-    keystone.list('PostCategory').model.findOne({ key: locals.section }).exec((err, result) => {
-      locals.data.category = result;
-      next(err);
-    });
-  });
 
   // Load all tags
   view.on('init', (next) => {

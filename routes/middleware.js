@@ -7,8 +7,8 @@ exports.initLocals = function (req, res, next) {
   res.locals.navLinks = [
     { label: 'Home', key: 'home', href: '/' },
     { label: 'About', key: 'about', href: '/about' },
-    { label: 'Collabs', key: 'collabs', href: '/collabs' },
-    { label: 'Illustration', key: 'illustration', href: '/illustration' },
+    { label: 'Collaborations', key: 'collaborations', href: '/collaborations' },
+    { label: 'Illustrations', key: 'illustrations', href: '/illustrations' },
     { label: 'Comics', key: 'comics', href: '/comics' },
     { label: 'Paperwork', key: 'paperwork', href: '/paperwork' },
     { label: 'Contact', key: 'contact', href: '/contact' }

@@ -9,13 +9,13 @@ const { Types } = keystone.Field;
  */
 
 const Page = new keystone.List('Page', {
-  map: { name: 'name' },
+  map: { name: 'title' },
   nocreate: true,
   nodelete: true
 });
 
 Page.add({
-  name: { type: String, required: true },
+  title: { type: String, required: true },
   body: {
     type: Types.Html,
     wysiwyg: true,
@@ -23,7 +23,8 @@ Page.add({
   },
   type: {
     type: Types.Select,
-    options: 'contact, about'
+    options: 'contact, about',
+    hidden: true
   }
 });
 
