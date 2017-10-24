@@ -1,0 +1,11 @@
+{{>header}}
+<div class="post-container">
+  <article>
+    <p><a href="/{{section}}">&larr; back to the blog</a></p>
+    <div class="post">
+      <img src="{{{cloudinaryUrl image width=750 height=450 crop='fit' }}}">
+      <p>{{{image.caption}}}</p>
+    </div>
+  </article>
+</div>
+<link href="/styles/post.css" rel="stylesheet" />

@@ -1642,8 +1642,8 @@ cloudinary@1.5.0:
     q "1.4.x"
 
 cloudinary@^1.9.0:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-1.9.0.tgz#44bfd5da79b8650ac63015606f0122ddf601c909"
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-1.9.1.tgz#6eb060a5cfb5084c4c984e4253cc15657b13d9b8"
   dependencies:
     lodash "3.10.x"
     q "1.4.x"

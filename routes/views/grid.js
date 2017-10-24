@@ -1,7 +1,7 @@
 const keystone = require('keystone');
 const async = require('async');
 
-const collaborations = (req, res, info) => {
+const Grid = (req, res, info) => {
   const view = new keystone.View(req, res);
 
   // Init locals
@@ -48,8 +48,6 @@ const collaborations = (req, res, info) => {
     }
   });
 
-  console.log({ section: locals.section });
-
   // Load the posts
   view.on('init', (next) => {
     const q = keystone.list('Post')
@@ -76,8 +74,8 @@ const collaborations = (req, res, info) => {
   });
 
   // Render the view
-  view.render('grid_page');
+  view.render('grid');
 };
 
-exports = collaborations;
-module.exports = collaborations;
+exports = Grid;
+module.exports = Grid;

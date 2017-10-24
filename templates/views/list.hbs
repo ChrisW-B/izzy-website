@@ -1,0 +1,20 @@
+{{>header}}
+<div class="container">
+  <div class="list">
+    {{# each data.posts.results}}
+      <div data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post">
+        <a class="list-link" href="{{postUrl slug ../section}}">
+          <img class='cover-photo' src="{{{cloudinaryUrl cover-photo width=460 height=300 crop='fill' }}}"/>
+          <div class='list-card {{slug}}'>
+            <div class="content">
+              <h2>{{{title}}}</h2>
+              <div class="list-description">{{{content}}}</div>
+            </div>
+          </div>
+        </a>
+      </div>
+      {{/each}}
+  </div>
+  {{>pagination}}
+</div>
+<link href="/styles/list.css" rel="stylesheet" />

@@ -21,10 +21,10 @@ exports = module.exports = function (app) {
   app.get('/contact', routes.views.contact);
 
   app.get('/all/:tag?', routes.views.all);
-  app.get('/illustrations/:tag?', (req, res) => routes.views.grid_page(req, res, { section: 'illustrations', title: 'Illustrations' }));
-  app.get('/paperwork/:tag?', (req, res) => routes.views.grid_page(req, res, { section: 'paperwork', title: 'Paperwork' }));
-  app.get('/collaborations/:tag?', (req, res) => routes.views.grid_page(req, res, { section: 'collaborations', title: 'Collaborations' }));
-  app.get('/comics/:tag?', (req, res) => routes.views.grid_page(req, res, { section: 'comics', title: 'Comics' }));
-
+  app.get('/illustrations/:tag?', (req, res) => routes.views.grid(req, res, { section: 'illustrations', title: 'Illustrations' }));
+  app.get('/paperwork/:tag?', (req, res) => routes.views.grid(req, res, { section: 'paperwork', title: 'Paperwork' }));
+  app.get('/collaborations/:tag?', (req, res) => routes.views.grid(req, res, { section: 'collaborations', title: 'Collaborations' }));
+  app.get('/comics/:tag?', (req, res) => routes.views.list(req, res, { section: 'comics', title: 'Comics' }));
+  app.get('/comic/post/:post', routes.views.comic);
   app.get('/:type/post/:post', routes.views.post);
 };

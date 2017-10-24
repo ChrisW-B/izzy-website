@@ -14,6 +14,13 @@
 
   <body>
     {{>messages messages=messages}}
+    <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="hex" clipPathUnits="objectBoundingBox">
+          <polygon points=".5 0, .93 .25, .93 .75, .5 1, .07 .75, .07 .25" />
+        </clipPath>
+      </defs>
+    </svg>
     <div id="body">
       {{{body}}}
     </div>

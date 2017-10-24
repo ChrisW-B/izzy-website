@@ -29,12 +29,22 @@
     min-width: 20rem;
     position: relative;
     text-align: right;
+    transition: z-index 0s $material-animation 0.5s;
     width: 30rem;
+    z-index: 0;
 
     &:hover {
-      .menu-items {
-        opacity: 1;
-        z-index: 3;
+      transition: z-index 0s $material-animation 0s;
+      z-index: 3;
+    }
+
+    svg {
+      &:hover {
+        .menu-items {
+          opacity: 1;
+          transform: translateY(0);
+          transition: transform 0.5s $material-animation 0s, opacity 0.5s $material-animation 0.1s;
+        }
       }
     }
 
@@ -48,10 +58,13 @@
       position: absolute;
       right: 0;
       top: 0;
-      transition: opacity 1s $material-animation;
+      transform: translateY(-1rem);
+      transition: transform 0.5s $material-animation 0s, opacity 0.5s $material-animation 0.1s;
 
       &:hover {
         opacity: 1;
+        transform: translateY(0);
+        transition: transform 0.5s $material-animation, opacity 0.5s $material-animation 0.1s;
       }
 
       & .menu-item {

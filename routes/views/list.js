@@ -1,15 +1,15 @@
 const keystone = require('keystone');
 const async = require('async');
 
-const Comics = (req, res) => {
+const List = (req, res, info) => {
   const view = new keystone.View(req, res);
 
   // Init locals
   const { locals } = res;
-  locals.section = 'comics';
+  locals.section = info.section;
+  locals.title = info.title;
   locals.filters = { ...req.params };
   locals.data = { posts: [], tags: [] };
-
 
   // Load all tags
   view.on('init', (next) => {
@@ -25,7 +25,7 @@ const Comics = (req, res) => {
         keystone.list('Post').model
           .count()
           .where('category')
-          .in([locals.data.category])
+          .in([locals.section])
           .exec((err, count) => {
             tag.postCount = count;
             next(err);
@@ -56,13 +56,12 @@ const Comics = (req, res) => {
         perPage: 10,
         maxPages: 10,
         filters: {
-          state: 'published'
+          state: 'published',
+          category: locals.section
         }
       })
       .sort('-publishedDate')
-      .populate('author tags category images');
-
-    q.where('category').in([locals.data.category]);
+      .populate('author tags images cover-photo');
 
     if (locals.data.tag) {
       q.where('tags').in([locals.data.tag]);
@@ -75,8 +74,8 @@ const Comics = (req, res) => {
   });
 
   // Render the view
-  view.render('comics');
+  view.render('list');
 };
 
-exports = Comics;
-module.exports = Comics;
+exports = List;
+module.exports = List;

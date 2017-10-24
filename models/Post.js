@@ -17,7 +17,7 @@ Post.add({
   title: { type: String, required: true },
   category: {
     type: Types.Select,
-    options: 'collaborations, illustrations, paperwork',
+    options: 'collaborations, illustrations, paperwork, comics',
     required: true,
     initial: true
   },
@@ -33,6 +33,13 @@ Post.add({
     index: true,
     dependsOn: { state: 'published' },
     default: Date.now
+  },
+  'cover-photo': {
+    type: Types.Relationship,
+    ref: 'Image',
+    index: true,
+    dependsOn: { category: 'comics' },
+    createInline: true
   },
   images: {
     type: Types.Relationship,
