@@ -1,11 +1,13 @@
 {{>header}}
 <div class="post-container">
+  <p><a href="/{{section}}">&larr; back to the blog</a></p>
   <article>
-    <p><a href="/{{section}}">&larr; back to the blog</a></p>
-    <div class="post">
-      <img src="{{{cloudinaryUrl image width=750 height=450 crop='fit' }}}">
-      <p>{{{image.caption}}}</p>
+    <div class="comic">
+      <img class="comic-image" src="{{{cloudinaryUrl data.image }}}">
+      <div class="comic-caption">{{{data.image.caption}}}</div>
     </div>
+    {{{comicPagination pagination}}}
   </article>
 </div>
+<link href="/styles/comic.css" rel="stylesheet" />
 <link href="/styles/post.css" rel="stylesheet" />

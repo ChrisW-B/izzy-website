@@ -1,0 +1,56 @@
+article {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  min-width: 800px;
+
+  .comic {
+    align-items: center;
+    display: flex;
+    flex-flow: column nowrap;
+
+    .comic-image {
+      max-width: 1400px;
+      width: 100%;
+    }
+    .comic-caption {
+      font-family: $font-poppins;
+      font-size: 1.4rem;
+      margin: 2rem;
+    }
+  }
+}
+
+.comic-pagination {
+  display: flex;
+  flex-flow: row nowrap;
+  font-family: $font-poppins;
+  justify-content: space-evenly;
+  margin: 0 10rem;
+  padding: 0;
+
+  li {
+    display: inline;
+    font-size: 5rem;
+    list-style: none;
+    padding: 0 1rem;
+
+    a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.4s $material-animation;
+      &:hover {
+        color: rgb(60, 60, 60);
+      }
+    }
+    &.disabled {
+      cursor: not-allowed;
+
+      a {
+        color: rgb(60, 60, 60);
+        pointer-events: none;
+        text-decoration: none;
+      }
+    }
+  }
+}

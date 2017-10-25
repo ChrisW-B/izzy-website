@@ -7,20 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Izzy's Landing Page</title>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <link href="/styles/site.css" rel="stylesheet" />
-    {{isAdminEditorCSS user}}
-    {{>jquery}}
+    <link href="/styles/site.css" rel="stylesheet" /> {{isAdminEditorCSS user}} {{>jquery}}
   </head>
 
   <body>
     {{>messages messages=messages}}
-    <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <clipPath id="hex" clipPathUnits="objectBoundingBox">
-          <polygon points=".5 0, .93 .25, .93 .75, .5 1, .07 .75, .07 .25" />
-        </clipPath>
-      </defs>
-    </svg>
     <div id="body">
       {{{body}}}
     </div>
@@ -28,3 +19,10 @@
   </body>
 
 </html>
+<svg id='hex-svg' width="0" height="0" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="hex" clipPathUnits="objectBoundingBox">
+      <polygon points=".5 0, .93 .25, .93 .75, .5 1, .07 .75, .07 .25" />
+    </clipPath>
+  </defs>
+</svg>

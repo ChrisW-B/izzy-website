@@ -287,6 +287,18 @@ module.exports = function () {
     return _helpers.pageUrl(nextPage);
   };
 
+  _helpers.comicPagination = function (pagination, options) {
+    const { index, firstPage, lastPage } = pagination;
+    return `
+    <ul class='comic-pagination'>
+      <li class='${+index <= +firstPage ? 'disabled':''}'><a href='?page=${+firstPage}'>&laquo;</a></li>
+      <li class='${+index <= +firstPage ? 'disabled':''}'><a href='?page=${+index - 1}'>&lsaquo;</a></li>
+      <li class='${+index >= +lastPage ? 'disabled':''}'><a href='?page=${+index + 1}'>&rsaquo;</a></li>
+      <li class='${+index >= +lastPage ? 'disabled':''}'><a href='?page=${+lastPage}'>&raquo;</a></li>
+    </ul>
+    `;
+  }
+
   //  ### Flash Message Helper
   //  KeystoneJS supports a message interface for information/errors to be passed from server
   //  to the front-end client and rendered in a html-block.  FlashMessage mirrors the Pug Mixin
