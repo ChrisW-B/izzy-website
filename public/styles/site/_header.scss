@@ -1,36 +1,34 @@
 .header {
   align-items: center;
   display: flex;
+  flex-flow: row;
   font-family: $font-poppins;
-  justify-content: space-between;
-  padding: 2rem;
+  justify-items: center;
+  padding: 0.2rem 2rem;
   position: relative;
 
   .name {
-    min-width: 20rem;
-    width: 30rem;
+    display: block;
     &>img {
+      display: block;
+      max-width: 25rem;
       width: 100%;
     }
   }
 
   .page-title {
+    flex: 1 1 auto;
     font-size: 2.6rem;
     margin: 0;
     text-align: center;
-
-    @media (max-width: 850px) {
-      flex: 1;
-    }
+    white-space: nowrap;
   }
 
   .mini-menu {
     fill: orange;
-    min-width: 20rem;
     position: relative;
     text-align: right;
     transition: z-index 0s $material-animation 0.5s;
-    width: 30rem;
     z-index: 0;
 
     &:hover {
@@ -111,20 +109,25 @@
     }
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 650px) {
     flex-flow: row wrap;
     padding: 0.5rem;
     .page-title {
+      flex: 1 1 100%;
       order: 3;
+      white-space: normal;
     }
     .name {
-      flex: 1 1 75%;
+      flex: 1 1 auto;
       order: 0;
+      &>img {
+        width: 100%;
+        height: auto;
+      }
     }
     .mini-menu {
-      min-width: unset;
+      flex: 1 1;
       order: 1;
-      width: unset;
     }
   }
 }

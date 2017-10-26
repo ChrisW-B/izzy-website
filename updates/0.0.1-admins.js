@@ -16,7 +16,11 @@ exports.create = {
     isAdmin: true
   }],
   Page: [
-    { name: 'About Page', title: 'About', body: '', type: 'about' },
-    { name: 'Contact Page', title: 'Contact', body: '', type: 'contact' }
+    {
+      name: 'About Page', title: 'About', body: '', type: 'about'
+    },
+    {
+      name: 'Contact Page', title: 'Contact', body: '', type: 'contact'
+    }
   ]
 };

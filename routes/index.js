@@ -19,6 +19,7 @@ exports = module.exports = function (app) {
 
   app.get('/about', routes.views.about);
   app.get('/contact', routes.views.contact);
+  app.post('/contact', routes.views.contact);
 
   app.get('/all/:tag?', routes.views.all);
   app.get('/illustrations/:tag?', (req, res) => routes.views.grid(req, res, { section: 'illustrations', title: 'Illustrations' }));

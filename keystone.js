@@ -9,13 +9,15 @@ const _ = require('lodash');
 const Helpers = require('./templates/views/helpers');
 
 keystone.init({
-  name: 'izzy\'s homepage',
-  brand: 'izzy\'s homepage',
-
+  name: process.env.BLOG_NAME,
+  brand: process.env.BLOG_NAME,
   sass: 'public',
   static: 'public',
   favicon: 'public/favicon.ico',
   views: 'templates/views',
+  emails: 'templates/emails',
+  auth: true,
+
   'view engine': '.hbs',
   'custom engine': handlebars.create({
     layoutsDir: 'templates/views/layouts',
@@ -26,7 +28,6 @@ keystone.init({
   }).engine,
   'auto update': true,
   'session store': 'mongo',
-  auth: true,
   'user model': 'Member'
 });
 keystone.import('models');

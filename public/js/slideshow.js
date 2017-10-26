@@ -18,7 +18,9 @@ const createSlide = (src, permalink = '', title = '', caption = '') =>
 
 const updateSlideshow = () => {
   const { index, photos, name } = slideshowInfo;
-  const { src, permalink, title, caption } = photos[index];
+  const {
+    src, permalink, title, caption
+  } = photos[index];
   let prev = $('<li class="dummy-slide"/>');
   let next = prev.clone();
   if (index > 0) prev = createSlide(photos[index - 1].src).addClass('prev-image');
