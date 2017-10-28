@@ -1,11 +1,22 @@
 .header {
   align-items: center;
+  background: url("/images/mums_pattern.gif") no-repeat center center/70% white;
+  border-bottom: 1px solid $oc-gray-1;
+  border-radius: 0 0 1rem 1rem;
   display: flex;
   flex-flow: row;
   font-family: $font-poppins;
   justify-items: center;
   padding: 0.2rem 2rem;
-  position: relative;
+  position: sticky;
+  top: 0;
+  transition: z-index 0s $material-animation 0.5s;
+  z-index: 0;
+
+  &:hover {
+    transition: z-index 0s $material-animation 0s;
+    z-index: 3;
+  }
 
   .name {
     display: block;
@@ -21,33 +32,19 @@
     font-size: 2.6rem;
     margin: 0;
     text-align: center;
+    text-shadow: 0 0 1rem white, 0 0 1rem white, 0 0 1rem white, 0 0 1rem white, 0 0 1rem white;
     white-space: nowrap;
   }
 
   .mini-menu {
     fill: orange;
+    flex: 0 0 250px;
     position: relative;
     text-align: right;
-    transition: z-index 0s $material-animation 0.5s;
-    z-index: 0;
-
-    &:hover {
-      transition: z-index 0s $material-animation 0s;
-      z-index: 3;
-    }
-
-    svg {
-      &:hover {
-        .menu-items {
-          opacity: 1;
-          transform: translateY(0);
-          transition: transform 0.5s $material-animation 0s, opacity 0.5s $material-animation 0.1s;
-        }
-      }
-    }
 
     .menu-items {
       background-color: white;
+      box-shadow: 0 0 0.5rem rgb(200, 200, 200);
       font-size: 2rem;
       list-style: none;
       margin: 0;
@@ -57,12 +54,13 @@
       right: 0;
       top: 0;
       transform: translateY(-1rem);
-      transition: transform 0.5s $material-animation 0s, opacity 0.5s $material-animation 0.1s;
+      transition: transform 0.5s $material-animation 0s, opacity 0.5s $material-animation 0.1s, z-index 0s $material-animation 0.5s;
 
       &:hover {
         opacity: 1;
         transform: translateY(0);
-        transition: transform 0.5s $material-animation, opacity 0.5s $material-animation 0.1s;
+        transition: transform 0.5s $material-animation, opacity 0.5s $material-animation 0.1s, z-index 0s $material-animation 0s;
+        z-index: 3;
       }
 
       & .menu-item {
@@ -112,6 +110,7 @@
   @media (max-width: 650px) {
     flex-flow: row wrap;
     padding: 0.5rem;
+    background-size: unset;
     .page-title {
       flex: 1 1 100%;
       order: 3;
@@ -121,8 +120,8 @@
       flex: 1 1 auto;
       order: 0;
       &>img {
-        width: 100%;
         height: auto;
+        width: 100%;
       }
     }
     .mini-menu {

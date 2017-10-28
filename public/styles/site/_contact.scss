@@ -1,0 +1,42 @@
+.contact-container {
+  font-family: $font-poppins;
+  font-size: 1.8rem;
+  margin: 2rem;
+  .contact-form {
+    max-width: 100rem;
+    margin: 0 auto;
+
+    .inputs {
+      display: grid;
+      font-size: 1.2rem;
+      grid-auto-rows: minmax(3rem, max-content);
+      grid-gap: 2rem;
+      grid-template-columns: 15rem auto;
+
+      & input,
+      & textarea {
+        border-radius: 0.4rem;
+        border: 1px solid $oc-gray-3;
+        font-size: 1.6rem;
+        padding: 0.5rem;
+
+        &:active,
+        &:focus {
+          border-color: $oc-blue-6;
+          box-shadow: 0 0 0.5rem $oc-blue-4;
+        }
+      }
+
+      & textarea {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 1.4rem;
+        resize: vertical;
+      }
+    }
+    button {
+      float: right;
+      margin: 2rem 0;
+      width: 15rem;
+    }
+  }
+}

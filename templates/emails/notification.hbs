@@ -1,15 +1,3 @@
 <h1>Hi %recipient.firstName%</h1>
-<p class="text-larger">Somebody sent you a message:</p>
-{{#if email.email}}
-  <p class="text-larger">From
-    {{#if email.name.full}}
-      <strong>{{email.name.full}}</strong>
-    {{/if}}
-    {{#if email.email}}
-      (<a href="mailto:{{email.email}}">{{email.email}}</a>)
-    {{/if}}
-  </p>
-  {{#if email.message}}
-    <blockquote>{{{email.message.html}}}</blockquote>
-  {{/if}}
-{{/if}}
+<p class="text-larger">{{email.name.full}}(<a href="mailto:{{email.email}}">{{email.email}}</a>) sent you a message:</p>
+<blockquote>{{{email.message.html}}}</blockquote>

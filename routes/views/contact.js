@@ -25,7 +25,7 @@ exports = module.exports = function (req, res) {
 
     updater.process(req.body, {
       flashErrors: true,
-      fields: 'name, email, message',
+      fields: 'name, email, message, subject',
       errorMessage: 'There was a problem submitting your enquiry:'
     }, (err) => {
       if (err) {

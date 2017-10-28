@@ -1,13 +1,3 @@
-html,
-body {
-  background: rgb(25, 25, 30);
-  color: white;
-
-  .header {
-    .name {
-      &>img {
-        filter: invert(1);
-      }
-    }
-  }
+.post-container {
+  font-family: $font-poppins;
 }

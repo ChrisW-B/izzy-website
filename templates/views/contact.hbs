@@ -1,25 +1,25 @@
 {{>header}}
-<div class="container">
+<div class="contact-container">
+  <div class='content'>
+    {{{data.body}}}
+  </div>
   {{#if enquirySubmitted}}
-    <h3>Thanks for getting in touch.</h3>
+    <h3>Thanks for getting in touch!</h3>
   {{else}}
-    <form method="post">
-      <input type="hidden" name="action" value="contact">
-      <div class="form-group {{#if validationErrors.name}}has-error{{/if}}">
-        <label>Name</label>
-        <input type="text" name="name.full" class="form-control" value="{{formData.[name.full]}}">
+    <form class='contact-form' method="post" autocomplete="on">
+      <div class="inputs">
+        <input type="hidden" name="action" value="contact">
+        <label for="name">Name</label>
+        <input type="text" class="{{#if validationErrors.name}}has-error{{/if}}" name="name" id="name" placeholder="Full name" required autocomplete="fname" value="{{formData.[name.full]}}">
+        <label for="email">Email</label>
+        <input class="{{#if validationErrors.email}}has-error{{/if}}" type="email" name="email" id="email" placeholder="name@example.com" required autocomplete="email" value="{{formData.email}}">
+        <label for="subject">Subject</label>
+        <input class="{{#if validationErrors.subject}}has-error{{/if}}" type="text" name="subject" id="subject" placeholder="Email Subject" required value="{{formData.subject}}">
+        <label for="message">Message</label>
+        <textarea class="{{#if validationErrors.message}}has-error{{/if}}" name="message" id="message" placeholder="Leave a message..." rows="6">{{formData.message}}</textarea>
       </div>
-      <div class="form-group {{#if validationErrors.email}}has-error{{/if}}">
-        <label>Email</label>
-        <input type="email" name="email" class="form-control" value="{{formData.email}}">
-      </div>
-      <div class="form-group {{#if validationErrors.message}}has-error{{/if}} ">
-        <label>Message</label>
-        <textarea name="message" placeholder="Leave us a message..." rows="4" class="form-control">{{formData.message}}</textarea>
-      </div>
-      <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Send</button>
-      </div>
+      <button type="submit">Send</button>
     </form>
   {{/if}}
 </div>
+<link href="/styles/contact.css" rel="stylesheet" />

@@ -4,7 +4,7 @@ const KeystoneEmail = require('keystone-email');
 const { Types } = keystone.Field;
 
 /**
- * Enquiry Model
+ * Email Model
  * =============
  */
 
@@ -16,6 +16,7 @@ const Email = new keystone.List('Email', {
 Email.add({
   name: { type: Types.Name, required: true },
   email: { type: Types.Email, required: true },
+  subject: { type: String, required: true },
   message: { type: Types.Markdown, required: true },
   createdAt: { type: Date, default: Date.now }
 });
@@ -60,7 +61,7 @@ Email.schema.methods.sendNotificationEmail = function (callback) {
       domain: process.env.MAILGUN_DOMAIN,
       to: admins,
       from: { name: process.env.BLOG_NAME, email: process.env.MAIL_FROM },
-      subject: 'New Email from isabellakapur.com'
+      subject: this.subject
     }, (err, result) => (err
       ? console.error('🤕 Mailgun test failed with error:\n', err)
       : console.log('📬 Successfully sent Mailgun test with result:\n', result)));
