@@ -1,3 +1,7 @@
+@import "../variables/open-color";
+
+@import "../variables/variables";
+
 .contact-container {
   font-family: $font-poppins;
   font-size: 1.8rem;
@@ -16,7 +20,7 @@
       & input,
       & textarea {
         border-radius: 0.4rem;
-        border: 1px solid $oc-gray-3;
+        border: 0.1rem solid $oc-gray-3;
         font-size: 1.6rem;
         padding: 0.5rem;
 
@@ -37,6 +41,24 @@
       float: right;
       margin: 2rem 0;
       width: 15rem;
+      background: transparent;
+      border: 0.1rem solid $oc-blue-5;
+      height: 3rem;
+      border-radius: 0.5rem;
+      color: $oc-blue-5;
+      transition: all 0.5s $material-animation;
+      font-size: 1.6rem;
+
+      &:hover {
+        background: $oc-blue-5;
+        color: white;
+        cursor: pointer;
+      }
+
+      &:active {
+        background: $oc-blue-9;
+        border-color: $oc-blue-9;
+      }
     }
   }
 }

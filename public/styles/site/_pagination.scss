@@ -1,3 +1,7 @@
+@import "../variables/open-color";
+
+@import "../variables/variables";
+
 .pagination {
   display: flex;
   font-family: $font-poppins;
@@ -10,19 +14,19 @@
     padding: 0 1rem;
 
     a {
-      color: black;
+      color: $oc-gray-7;
       text-decoration: none;
       transition: color 0.4s $material-animation;
       &:hover {
-        color: lightgray;
+        color: $oc-gray-9;
       }
     }
-
     &.disabled,
     &.active {
       cursor: not-allowed;
+
       a {
-        color: lightgray;
+        color: $oc-gray-3;
         pointer-events: none;
         text-decoration: none;
       }

@@ -1,7 +1,11 @@
+@import "../variables/open-color";
+
+@import "../variables/variables";
+
 .header {
   align-items: center;
   background: url("/images/mums_pattern.gif") no-repeat center center/70% white;
-  border-bottom: 1px solid $oc-gray-1;
+  border-bottom: 0.1rem solid $oc-gray-1;
   border-radius: 0 0 1rem 1rem;
   display: flex;
   flex-flow: row;
@@ -38,13 +42,13 @@
 
   .mini-menu {
     fill: orange;
-    flex: 0 0 250px;
+    flex: 0 0 25rem;
     position: relative;
     text-align: right;
 
     .menu-items {
       background-color: white;
-      box-shadow: 0 0 0.5rem rgb(200, 200, 200);
+      box-shadow: 0 0 0.5rem $oc-gray-3;
       font-size: 2rem;
       list-style: none;
       margin: 0;
@@ -69,7 +73,7 @@
 
         a {
           background: transparent;
-          color: black;
+          color: $oc-gray-9;
           flex: 1;
           padding: 1rem;
           text-align: right;

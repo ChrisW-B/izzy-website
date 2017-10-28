@@ -1,3 +1,7 @@
+@import "../variables/open-color";
+
+@import "../variables/variables";
+
 .home-container {
   display: flex;
   font-family: $font-poppins;
@@ -28,7 +32,7 @@
 
     .menu-item {
       align-items: center;
-      color: rgb(8, 0, 61);
+      color: $oc-gray-9;
       display: flex;
       flex: 1;
       font-size: 3.8rem;

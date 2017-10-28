@@ -1,3 +1,5 @@
+@import "../variables/variables";
+
 .page-contents {
   margin: 5rem 0 0;
   position: relative;
@@ -52,7 +54,6 @@
         .title {
           align-self: flex-end;
           background: white;
-          color: black;
           font-family: sans-serif;
           font-size: 1.3rem;
           justify-self: flex-end;

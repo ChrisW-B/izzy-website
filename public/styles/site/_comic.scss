@@ -1,8 +1,12 @@
+@import "../variables/open-color";
+
+@import "../variables/variables";
+
 article {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
-  min-width: 800px;
+  min-width: 80rem;
 
   .comic {
     align-items: center;
@@ -10,7 +14,7 @@ article {
     flex-flow: column nowrap;
 
     .comic-image {
-      max-width: 1400px;
+      max-width: 140rem;
       width: 100%;
     }
     .comic-caption {
@@ -36,18 +40,18 @@ article {
     padding: 0 1rem;
 
     a {
-      color: white;
+      color: $oc-gray-7;
       text-decoration: none;
       transition: color 0.4s $material-animation;
       &:hover {
-        color: rgb(60, 60, 60);
+        color: $oc-gray-9;
       }
     }
     &.disabled {
       cursor: not-allowed;
 
       a {
-        color: rgb(60, 60, 60);
+        color: $oc-gray-3;
         pointer-events: none;
         text-decoration: none;
       }

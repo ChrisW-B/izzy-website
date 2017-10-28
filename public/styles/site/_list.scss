@@ -1,3 +1,7 @@
+@import "../variables/open-color";
+
+@import "../variables/variables";
+
 .list {
   align-items: center;
   display: flex;
@@ -31,7 +35,7 @@
         width: 46rem;
 
         .content {
-          color: black;
+          color: $oc-gray-9;
           font-family: $font-poppins;
           font-weight: 100;
           opacity: 0;
