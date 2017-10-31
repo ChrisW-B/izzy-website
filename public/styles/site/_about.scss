@@ -8,6 +8,7 @@
   margin: 2rem;
 
   .portrait {
+    height: 30rem;
     width: 30rem;
   }
 
@@ -19,6 +20,7 @@
     flex-direction: column;
     .portrait {
       align-self: center;
+      height: 15rem;
       width: 15rem;
     }
   }
