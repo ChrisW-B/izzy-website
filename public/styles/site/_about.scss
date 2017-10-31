@@ -15,7 +15,7 @@
     flex: 1;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 50rem) {
     flex-direction: column;
     .portrait {
       align-self: center;

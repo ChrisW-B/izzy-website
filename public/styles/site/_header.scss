@@ -1,19 +1,17 @@
-@import "../variables/open-color";
+@import "../../../node_modules/open-color/open-color.scss";
 
 @import "../variables/variables";
 
 .header {
   align-items: center;
   background: url("/images/mums_pattern.gif") no-repeat center center/70% white;
-  border-bottom: 0.1rem solid $oc-gray-1;
-  border-radius: 0 0 1rem 1rem;
+  border-bottom: 0.1rem solid $oc-gray-2;
   display: flex;
   flex-flow: row;
   font-family: $font-poppins;
   justify-items: center;
   padding: 0.2rem 2rem;
-  position: sticky;
-  top: 0;
+  position: relative;
   transition: z-index 0s $material-animation 0.5s;
   z-index: 0;
 
@@ -24,7 +22,7 @@
 
   .name {
     display: block;
-    &>img {
+    & > img {
       display: block;
       max-width: 25rem;
       width: 100%;
@@ -41,14 +39,24 @@
   }
 
   .mini-menu {
-    fill: orange;
+    display: flex;
     flex: 0 0 25rem;
+    flex-direction: row;
+    justify-content: flex-end;
     position: relative;
-    text-align: right;
+
+    .menu-hex {
+      background: url("/images/mums_pattern.gif") no-repeat center center/800%;
+      clip-path: url(#hex);
+      -webkit-clip-path: url(#hex);
+      filter: invert(1);
+      height: 5rem;
+      width: 5rem;
+    }
 
     .menu-items {
-      background-color: white;
-      box-shadow: 0 0 0.5rem $oc-gray-3;
+      background: white;
+      box-shadow: 0 0 0.5rem $oc-gray-7;
       font-size: 2rem;
       list-style: none;
       margin: 0;
@@ -69,7 +77,8 @@
 
       & .menu-item {
         display: flex;
-        min-width: 15rem;
+        position: relative;
+        text-shadow: 0 0 1rem white, 0 0 1rem white, 0 0 1rem white, 0 0 1rem white, 0 0 1rem white;
 
         a {
           background: transparent;
@@ -80,57 +89,37 @@
           text-decoration: none;
         }
 
-        &.home:hover {
-          background: orange;
+        &::before {
+          background: url("/images/mums.gif") no-repeat center center/100% white;
+          bottom: 0;
+          content: '';
+          left: 0;
+          opacity: 0;
+          position: absolute;
+          right: 0;
+          top: 0;
+          transition: opacity 0.25s $material-animation;
+          z-index: -1;
         }
 
-        &.about:hover {
-          background: blue;
-        }
-
-        &.collaborations:hover {
-          background: green;
-        }
-
-        &.illustrations:hover {
-          background: purple;
-        }
-
-        &.comics:hover {
-          background: orange;
-        }
-
-        &.paperwork:hover {
-          background: orchid;
-        }
-
-        &.contact:hover {
-          background: orangered;
+        &:hover {
+          &::before {
+            opacity: 1;
+          }
         }
       }
     }
   }
 
-  @media (max-width: 650px) {
+  @media (max-width: 65rem) {
+    background-size: unset;
     flex-flow: row wrap;
     padding: 0.5rem;
-    background-size: unset;
-    .page-title {
-      flex: 1 1 100%;
-      order: 3;
-      white-space: normal;
-    }
     .name {
-      flex: 1 1 auto;
-      order: 0;
-      &>img {
-        height: auto;
-        width: 100%;
-      }
+      display: none;
     }
     .mini-menu {
       flex: 1 1;
-      order: 1;
     }
   }
 }

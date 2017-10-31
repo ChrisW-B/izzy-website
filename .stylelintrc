@@ -21,6 +21,7 @@
       "at-rules"
     ],
     "order/properties-alphabetical-order": true,
-    "color-hex-case": null
+    "color-hex-case": null,
+    "unit-blacklist": ["px", "em"]
   }
 }

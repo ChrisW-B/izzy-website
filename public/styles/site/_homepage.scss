@@ -1,4 +1,4 @@
-@import "../variables/open-color";
+@import "../../../node_modules/open-color/open-color.scss";
 
 @import "../variables/variables";
 
@@ -12,9 +12,9 @@
     flex-direction: column;
     height: 100vh;
     justify-content: space-evenly;
+    position: relative;
     text-align: center;
     width: 100%;
-    position: relative;
 
     &::before {
       background: url("/images/mums_pattern.gif") no-repeat center center;
@@ -35,7 +35,7 @@
       color: $oc-gray-9;
       display: flex;
       flex: 1;
-      font-size: 3.8rem;
+      font-size: 3.6rem;
       justify-content: center;
       position: relative;
       text-decoration: none;
@@ -48,9 +48,7 @@
       }
 
       &::before {
-        background-position: center center;
-        background-repeat: repeat;
-        background-size: 40%;
+        background: url("/images/mums.gif") repeat center center/40%;
         bottom: 0;
         content: '';
         display: inline-block;
@@ -70,32 +68,19 @@
           text-shadow: 0 0 0.5rem white, 0 0 0.5rem white, 0 0 0.5rem white, 0 0 0.5rem white, 0 0 0.5rem white;
         }
       }
-
-      &.about {
-        &::before {
-          background-image: url("/images/mums.gif");
-        }
-      }
-
-      &.illustrations {
-        &::before {
-          background-image: url("/images/woven_pattern.gif");
-        }
-      }
     }
   }
 
-  @media (min-width: 600px) {
-    min-height: 80rem;
-    min-width: 40rem;
+  @media (min-width: 60rem) {
     align-items: center;
     justify-content: center;
+    min-height: 80rem;
 
     .menu {
-      height: 60rem;
-      width: 60rem;
       align-items: center;
+      height: 60rem;
       justify-content: center;
+      width: 60rem;
 
       &::before {
         background: url("/images/mums_pattern.gif") no-repeat center -5rem/120%;
@@ -113,20 +98,20 @@
       }
 
       .menu-item {
+        font-size: 1.5rem;
         height: 15rem;
         position: absolute;
         width: 15rem;
-        font-size: 1.8rem;
 
         &::before {
+          background-repeat: no-repeat;
+          background-size: cover;
           clip-path: url(#hex);
           -webkit-clip-path: url(#hex);
           height: 15rem;
           opacity: 0;
           position: absolute;
           width: 15rem;
-          background-repeat: no-repeat;
-          background-size: cover;
         }
 
         &.about {

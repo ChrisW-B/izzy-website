@@ -1,12 +1,13 @@
 {{>header}}
 <div class="post-container">
-  <p><a href="/{{section}}">&larr; back to the blog</a></p>
   <article>
+    {{{comicPagination pagination}}}
     <div class="comic">
       <img class="comic-image" src="{{{cloudinaryUrl data.image }}}">
       <div class="comic-caption">{{{data.image.caption}}}</div>
     </div>
     {{{comicPagination pagination}}}
+    <p class="back"><a href="/{{section}}">&larr; Back to {{section}}</a></p>
   </article>
 </div>
 <link href="/styles/comic.css" rel="stylesheet" />

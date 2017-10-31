@@ -1,5 +1,42 @@
 @import "../variables/variables";
 
+@import "../../../node_modules/open-color/open-color.scss";
+
 .post-container {
   font-family: $font-poppins;
+
+  .back {
+    font-size: 1.4rem;
+    text-align: center;
+    text-transform: capitalize;
+    a {
+      color: $oc-gray-9;
+      text-decoration: none;
+      transition: color 0.5s $material-animation;
+      &:hover {
+        color: $oc-gray-3;
+      }
+    }
+  }
+
+  article {
+    align-items: center;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    margin: 4rem 0;
+
+    .post-image {
+      align-content: center;
+      align-items: center;
+      display: flex;
+      flex-flow: column nowrap;
+      font-size: 1.4rem;
+      margin: 3rem;
+      border-bottom: 0.2rem dashed $oc-blue-0;
+      &:last-child {
+        border: 0;
+      }
+    }
+  }
 }

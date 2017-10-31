@@ -22,6 +22,7 @@
     "selector_separator": " ",
     "max_preserve_newlines": 2,
     "preserve_newlines": true,
+    "space_around_combinator": true,
     "selector_separator_newline": false // Separate selectors with newline or not (e.g. "a,\nbr" or "a, br")
   },
   "js": {

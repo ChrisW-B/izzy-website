@@ -7,7 +7,7 @@ const slideshowInfo = {
 const createSlide = (src, permalink = '', title = '', caption = '') =>
   $(`
   <li class="photo-wrapper">
-    <img class="photo" src="${src}"></img>
+    <img class="photo" src="${src}" />
     <div class="content">
       <h2>${title}</h2>
       <p>${caption}</p>
@@ -18,9 +18,7 @@ const createSlide = (src, permalink = '', title = '', caption = '') =>
 
 const updateSlideshow = () => {
   const { index, photos, name } = slideshowInfo;
-  const {
-    src, permalink, title, caption
-  } = photos[index];
+  const { src, permalink, title, caption } = photos[index];
   let prev = $('<li class="dummy-slide"/>');
   let next = prev.clone();
   if (index > 0) prev = createSlide(photos[index - 1].src).addClass('prev-image');
