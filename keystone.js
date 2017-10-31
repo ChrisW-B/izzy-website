@@ -41,8 +41,9 @@ keystone.set('routes', require('./routes'));
 
 keystone.set('nav', {
   posts: ['posts', 'images', 'tags'],
-  'Static Pages': ['pages'],
-  members: 'members'
+  'Static Pages': 'pages',
+  members: 'members',
+  emails: 'emails'
 });
 
 keystone.set('cloudinary config', process.env.CLOUDINARY_URL);

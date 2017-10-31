@@ -28,4 +28,5 @@ exports = module.exports = function (app) {
   app.get('/comics/:tag?', (req, res) => routes.views.list(req, res, { section: 'comics', title: 'Comics' }));
   app.get('/comics/post/:post', routes.views.comic);
   app.get('/:type/post/:post', routes.views.post);
+  app.get('/admin', (req, res) => res.redirect('/keystone'));
 };
