@@ -3,6 +3,7 @@
 @import "../variables/variables";
 
 .featherlight {
+
   .featherlight-content {
     background: transparent;
     border: 0;
@@ -27,6 +28,7 @@
       display: flex;
       flex-direction: row;
       font-family: sans-serif;
+      height: calc(100vh - 5rem);
       justify-content: space-between;
       list-style: none;
       margin: 0;
@@ -35,51 +37,82 @@
 
       .dummy-slide {
         width: 11rem;
+        @media (max-width: 60rem) {
+          width: 2rem;
+        }
       }
 
-      .photo-wrapper {
+      .slide-wrapper {
         display: inline-block;
         margin: 0;
         padding: 0;
         position: relative;
 
+        .photo {
+          border-radius: 0.3rem;
+          height: 100%;
+        }
+
+        &.focus-image {
+          background: rgba(255, 255, 255, 0.8);
+          border-radius: 0.3rem;
+          display: grid;
+
+          .content {
+            font-size: 1.4rem;
+            overflow-x: scroll;
+            padding: 0 2rem 2rem;
+            position: relative;
+            transition: opacity 0.5s $material-animation;
+
+
+            a {
+              color: $oc-gray-9;
+              font-size: 1rem;
+              padding-bottom: 5rem;
+            }
+          }
+
+          .photo {
+            border-radius: 0.3rem 0.3rem 0 0;
+            height: auto;
+            max-height: 80vh;
+            max-width: calc(100vw - 18rem);
+          }
+        }
+
         &.next-image,
         &.prev-image {
           cursor: pointer;
+          object-fit: cover;
           opacity: 0.95;
           overflow: hidden;
           position: relative;
-          width: 11rem;
+          width: 8rem;
+
+          & .photo {
+            object-fit: cover;
+            width: 100%;
+          }
+
           .content {
             display: none;
           }
-        }
 
-        .photo {
-          border-radius: 0.3rem;
-          max-height: calc(100vh - 6rem);
-          max-width: calc(100vw - 6rem);
-        }
-
-        .content {
-          background: rgba(255, 255, 255, 0.8);
-          border-radius: 0 0 0.3rem;
-          bottom: 0.3rem;
-          font-size: 1.4rem;
-          left: 0;
-          opacity: 0.2;
-          padding: 0 2rem 2rem;
-          position: absolute;
-          right: 0;
-          transition: opacity 0.5s $material-animation;
-
-          a {
-            color: $oc-gray-9;
-            font-size: 1rem;
+          &.next-image {
+            .photo {
+              object-position: left center;
+            }
           }
 
-          &:hover {
-            opacity: 1;
+          &.prev-image {
+            .photo {
+              object-position: right center;
+            }
+          }
+
+          @media (max-width: 60rem) {
+            width: 2rem;
           }
         }
       }

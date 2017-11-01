@@ -4,7 +4,7 @@
 
 .header {
   align-items: center;
-  background: url("/images/mums_pattern.gif") no-repeat center center/70% white;
+  background: transparent;
   border-bottom: 0.1rem solid $oc-gray-2;
   display: flex;
   flex-flow: row;
@@ -14,6 +14,19 @@
   position: relative;
   transition: z-index 0s $material-animation 0.5s;
   z-index: 0;
+
+  &::before {
+    background: url("/images/mums_pattern.gif") no-repeat center center/70% white;
+    bottom: 0;
+    content: '';
+    display: inline-block;
+    left: 0;
+    opacity: 0.2;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+  }
 
   &:hover {
     transition: z-index 0s $material-animation 0s;
@@ -34,7 +47,6 @@
     font-size: 2.6rem;
     margin: 0;
     text-align: center;
-    text-shadow: 0 0 1rem white, 0 0 1rem white, 0 0 1rem white, 0 0 1rem white, 0 0 1rem white;
     white-space: nowrap;
   }
 
@@ -112,9 +124,13 @@
   }
 
   @media (max-width: 65rem) {
-    background-size: unset;
     flex-flow: row wrap;
     padding: 0.5rem;
+
+    &::before {
+      background-size: unset;
+    }
+
     .name {
       display: none;
     }

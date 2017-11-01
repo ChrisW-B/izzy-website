@@ -4,10 +4,10 @@ const slideshowInfo = {
   name: null
 };
 
-const createSlide = (src, permalink = '', title = '', caption = '') =>
+const createSlide = ({ src, permalink = '', title = '', caption = '' }) =>
   $(`
-  <li class="photo-wrapper">
-    <img class="photo" src="${src}" />
+  <li class="slide-wrapper">
+    <img class="photo" src="${src}"/>
     <div class="content">
       <h2>${title}</h2>
       <p>${caption}</p>
@@ -16,14 +16,21 @@ const createSlide = (src, permalink = '', title = '', caption = '') =>
   </li>
   `);
 
+const setContentWidth = () => {
+  console.log('updating');
+  const image = $('.featherlight-content .lightbox-images .slide-wrapper.focus-image .photo');
+  const content = $('.featherlight-content .lightbox-images .slide-wrapper.focus-image .content');
+  content.css('width', image.width());
+}
+
 const updateSlideshow = () => {
   const { index, photos, name } = slideshowInfo;
-  const { src, permalink, title, caption } = photos[index];
   let prev = $('<li class="dummy-slide"/>');
   let next = prev.clone();
-  if (index > 0) prev = createSlide(photos[index - 1].src).addClass('prev-image');
-  if (index < photos.length - 1) next = createSlide(photos[index + 1].src).addClass('next-image');
-  $(`.${name}.lightbox-images`).html([prev, createSlide(src, permalink, title, caption), next]);
+  if (index > 0) prev = createSlide(photos[index - 1]).addClass('prev-image');
+  if (index < photos.length - 1) next = createSlide(photos[index + 1]).addClass('next-image');
+  $(`.${name}.lightbox-images`).html([prev, createSlide(photos[index]).addClass('focus-image'), next]);
+  $(`.${name}.lightbox-images .slide-wrapper.focus-image .photo`).imagesLoaded(setContentWidth);
 };
 
 const prevImage = () => {
@@ -56,6 +63,7 @@ const createSlideshow = (name, info) => {
   updateSlideshow();
 };
 
+$(window).on('resize', setContentWidth);
 $(document).on('click', '.prev-image', prevImage);
 $(document).on('click', '.next-image', nextImage);
 $(document).on('click', '.featherlight', closeSlideShow);

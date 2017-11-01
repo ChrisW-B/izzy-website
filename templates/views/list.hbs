@@ -4,7 +4,7 @@
     {{# each data.posts.results}}
       <div data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post">
         <a class="list-link" href="{{postUrl slug ../section}}">
-          <img class='cover-photo' src="{{{cloudinaryUrl cover-photo width=460 height=300 crop='fill' }}}"/>
+          <img class='cover-photo' src="{{{cloudinaryUrl cover-photo width=920 height=600 crop='fill' quality=100}}}"/>
           <div class='list-card {{slug}}'>
             <div class="content">
               <h2>{{{title}}}</h2>

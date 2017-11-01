@@ -61,12 +61,17 @@
           max-width: 80%;
           padding: 0.5rem;
           text-align: left;
+          transform: translateX(-1rem);
+          transition: transform 0.6s $material-animation;
         }
       }
 
       &:hover {
         .post-info {
           opacity: 1;
+          .title {
+            transform: translateX(0);
+          }
         }
       }
 

@@ -1,7 +1,7 @@
 const keystone = require('keystone');
 const async = require('async');
 
-exports = module.exports = function (req, res) {
+const All = (req, res, info) => {
   const view = new keystone.View(req, res);
 
   // Init locals
@@ -10,39 +10,6 @@ exports = module.exports = function (req, res) {
   locals.title = 'All Posts';
   locals.filters = { ...req.params };
   locals.data = { posts: [], tags: [] };
-
-  // Load all tags
-  view.on('init', (next) => {
-    keystone.list('Tag').model.find().sort('name').exec((err, results) => {
-      if (err || !results.length) {
-        return next(err);
-      }
-
-      locals.data.tags = results;
-
-      // Load the counts for each tags
-      return async.each(locals.data.tags, (tag, next) => {
-        keystone.list('Post').model.count().where('tags').in([tag.id]).exec((err, count) => {
-          tag.postCount = count;
-          next(err);
-        });
-      }, (err) => {
-        next(err);
-      });
-    });
-  });
-
-  // Load the current tag filter
-  view.on('init', (next) => {
-    if (req.params.tag) {
-      keystone.list('Tag').model.findOne({ key: locals.filters.tag }).exec((err, result) => {
-        locals.data.tag = result;
-        next(err);
-      });
-    } else {
-      next();
-    }
-  });
 
   // Load the posts
   view.on('init', (next) => {
@@ -56,11 +23,7 @@ exports = module.exports = function (req, res) {
         }
       })
       .sort('-publishedDate')
-      .populate('author tags category images');
-
-    if (locals.data.tag) {
-      q.where('tags').in([locals.data.tag]);
-    }
+      .populate('author tags images');
 
     q.exec((err, results) => {
       locals.data.posts = results;
@@ -71,3 +34,6 @@ exports = module.exports = function (req, res) {
   // Render the view
   view.render('grid');
 };
+
+exports = All;
+module.exports = All;
