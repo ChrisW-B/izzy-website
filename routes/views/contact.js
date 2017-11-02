@@ -6,7 +6,7 @@ exports = module.exports = function (req, res) {
   const view = new keystone.View(req, res);
   const { locals } = res;
 
-  locals.section = 'about';
+  locals.section = 'contact';
 
   view.on('init', (next) => {
     keystone.list('Page').model.findOne({ type: 'contact' })
