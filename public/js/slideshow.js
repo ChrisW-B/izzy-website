@@ -16,12 +16,12 @@ const createSlide = ({ src, permalink = '', title = '', caption = '' }) =>
   </li>
   `);
 
-const setContentWidth = () => {
-  console.log('updating');
-  const image = $('.featherlight-content .lightbox-images .slide-wrapper.focus-image .photo');
-  const content = $('.featherlight-content .lightbox-images .slide-wrapper.focus-image .content');
-  content.css('width', image.width());
-}
+// const setContentWidth = () => {
+//   console.log('updating');
+//   const image = $('.featherlight-content .lightbox-images .slide-wrapper.focus-image .photo');
+//   const content = $('.featherlight-content .lightbox-images .slide-wrapper.focus-image .content');
+//   content.css('width', image.width());
+// }
 
 const updateSlideshow = () => {
   const { index, photos, name } = slideshowInfo;
@@ -30,7 +30,7 @@ const updateSlideshow = () => {
   if (index > 0) prev = createSlide(photos[index - 1]).addClass('prev-image');
   if (index < photos.length - 1) next = createSlide(photos[index + 1]).addClass('next-image');
   $(`.${name}.lightbox-images`).html([prev, createSlide(photos[index]).addClass('focus-image'), next]);
-  $(`.${name}.lightbox-images .slide-wrapper.focus-image .photo`).imagesLoaded(setContentWidth);
+  // $(`.${name}.lightbox-images .slide-wrapper.focus-image .photo`).imagesLoaded(setContentWidth);
 };
 
 const prevImage = () => {
@@ -63,7 +63,6 @@ const createSlideshow = (name, info) => {
   updateSlideshow();
 };
 
-$(window).on('resize', setContentWidth);
 $(document).on('click', '.prev-image', prevImage);
 $(document).on('click', '.next-image', nextImage);
 $(document).on('click', '.featherlight', closeSlideShow);
