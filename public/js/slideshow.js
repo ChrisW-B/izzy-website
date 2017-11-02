@@ -4,10 +4,10 @@ const slideshowInfo = {
   name: null
 };
 
-const createSlide = ({ src, permalink = '', title = '', caption = '' }) =>
+const createSlide = ({ src, permalink = '', title = '', caption = '', hover = '' }) =>
   $(`
   <li class="slide-wrapper">
-    <img class="photo" src="${src}"/>
+    <img class="photo" src="${src}" title='${hover}'/>
     <div class="content">
       <h2>${title}</h2>
       <p>${caption}</p>
@@ -30,7 +30,6 @@ const updateSlideshow = () => {
   if (index > 0) prev = createSlide(photos[index - 1]).addClass('prev-image');
   if (index < photos.length - 1) next = createSlide(photos[index + 1]).addClass('next-image');
   $(`.${name}.lightbox-images`).html([prev, createSlide(photos[index]).addClass('focus-image'), next]);
-  // $(`.${name}.lightbox-images .slide-wrapper.focus-image .photo`).imagesLoaded(setContentWidth);
 };
 
 const prevImage = () => {

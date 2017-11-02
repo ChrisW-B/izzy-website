@@ -163,7 +163,8 @@ module.exports = function () {
       src: _helpers.cloudinaryUrl(image, options),
       title,
       permalink: `/${section}/post/${slug}`,
-      caption: image.caption ? image.caption : content
+      caption: image.caption ? image.caption : content,
+      hover: image.hover ? image.hover : ''
     }));
     return JSON.stringify(urls);
   }
