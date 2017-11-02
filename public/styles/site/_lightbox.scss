@@ -52,6 +52,7 @@
         }
 
         &.focus-image {
+          margin: 0 2rem;
 
           .content {
             background: rgba(255, 255, 255, 0.8);
@@ -87,6 +88,7 @@
           width: 8rem;
 
           & .photo {
+            border-radius: 0 0.3rem 0.3rem 0;
             height: 100%;
             object-fit: cover;
             width: 100%;
