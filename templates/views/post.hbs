@@ -4,7 +4,7 @@
     <div class="post">
       {{# each data.post.images as |image|}}
         <div class="post-image">
-          <img src="{{{ cloudinaryUrl image quality=100 width=1800 height=1800 crop='fit' }}}">
+          <img src="{{{ cloudinaryUrl image quality=100 width=1800 height=1800 crop='fit' }}}" title="{{image.hover}}">
           <p>{{{image.caption}}}</p>
         </div>
         {{/each}}

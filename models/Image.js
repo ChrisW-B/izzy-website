@@ -25,9 +25,14 @@ Image.add({
     wysiwyg: true,
     initial: true,
     height: 250
+  },
+  hover: {
+    type: String,
+    initial: true,
+    label: 'Hover Text'
   }
 });
 Image.relationship({ ref: 'Post', path: 'posts', refPath: 'images' });
-Image.defaultColumns = 'name, image|20%, caption';
+Image.defaultColumns = 'name, image|20%, caption, hover';
 
 Image.register();

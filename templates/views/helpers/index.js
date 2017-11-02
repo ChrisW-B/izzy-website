@@ -291,11 +291,11 @@ module.exports = function () {
     const { index, firstPage, lastPage } = pagination;
     return `
     <ul class='comic-pagination'>
-      <li class='${+index <= +firstPage ? 'disabled':''}'><a href='?page=${+firstPage}'>&laquo;</a></li>
-      <li class='${+index <= +firstPage ? 'disabled':''}'><a href='?page=${+index - 1}'>&lsaquo;</a></li>
+      <li class='${+index <= +firstPage ? 'disabled':''}'><a href='?page=${+firstPage}' title='First Page'>&laquo;</a></li>
+      <li class='${+index <= +firstPage ? 'disabled':''}'><a href='?page=${+index - 1}' title='Previous Page'>&lsaquo;</a></li>
       <li class='disabled page-num'><a href='#'>${index}</a></li>
-      <li class='${+index >= +lastPage ? 'disabled':''}'><a href='?page=${+index + 1}'>&rsaquo;</a></li>
-      <li class='${+index >= +lastPage ? 'disabled':''}'><a href='?page=${+lastPage}'>&raquo;</a></li>
+      <li class='${+index >= +lastPage ? 'disabled':''}'><a href='?page=${+index + 1}' title='Next Page'>&rsaquo;</a></li>
+      <li class='${+index >= +lastPage ? 'disabled':''}'><a href='?page=${+lastPage}' title='Last Page'>&raquo;</a></li>
     </ul>
     `;
   }

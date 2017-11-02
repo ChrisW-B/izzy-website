@@ -2,10 +2,10 @@
 <div class="page-contents">
   <div class="blog">
     {{# each data.posts.results}}
-      <button data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post" data-featherlight=".{{slug}}" onclick='createSlideshow("{{slug}}", {{{generateImageArray images title ../section slug content width=1200 height=1200 crop='fit' quality=100 }}})'>
+      <button data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post" data-featherlight=".{{slug}}" onclick='createSlideshow("{{slug}}", {{{generateImageArray images title ../section slug content width=1000 height=1000 crop='fit' quality=100 }}})'>
         <div class="post-images">
           {{# each images as |image|}}
-            <img src="{{{cloudinaryUrl image width=700 height=700 crop='fit' quality=100}}}" />
+            <img src="{{{cloudinaryUrl image width=400 height=400 crop='fit' quality=100}}}" title="{{image.hover}}" />
             {{/each}}
         </div>
         <div class="post-info">
