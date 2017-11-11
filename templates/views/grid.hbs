@@ -2,7 +2,7 @@
 <div class="page-contents">
   <div class="blog">
     {{# each data.posts.results}}
-      <button data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post" data-featherlight=".{{slug}}" onclick='createSlideshow("{{slug}}", {{{generateImageArray images title ../section slug content width=1000 height=1000 crop='fit' quality=100 }}})'>
+      <span data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post" data-featherlight=".{{slug}}" onclick='createSlideshow("{{slug}}", {{{generateImageArray images title ../section slug content width=1000 height=1000 crop='fit' quality=100 }}})'>
         <div class="post-images">
           {{# each images as |image|}}
             <img src="{{{cloudinaryUrl image width=600 height=600 crop='fit' quality=100}}}" title="{{image.hover}}" />
@@ -11,7 +11,7 @@
         <div class="post-info">
           <p class="title">{{{title}}}</p>
         </div>
-      </button>
+      </span>
       {{/each}}
   </div>
   {{>pagination}}

@@ -52,7 +52,7 @@
         }
 
         &.focus-image {
-          margin: 0 2rem;
+          margin: 0 1rem;
 
           .content {
             background: rgba(255, 255, 255, 0.8);
@@ -107,7 +107,7 @@
           }
 
           @media (max-width: 60rem) {
-            width: 2rem;
+            width: 4rem;
           }
         }
       }

@@ -16,13 +16,6 @@ const createSlide = ({ src, permalink = '', title = '', caption = '', hover = ''
   </li>
   `);
 
-// const setContentWidth = () => {
-//   console.log('updating');
-//   const image = $('.featherlight-content .lightbox-images .slide-wrapper.focus-image .photo');
-//   const content = $('.featherlight-content .lightbox-images .slide-wrapper.focus-image .content');
-//   content.css('width', image.width());
-// }
-
 const updateSlideshow = () => {
   const { index, photos, name } = slideshowInfo;
   let prev = $('<li class="dummy-slide"/>');
