@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const fs = require('fs');
 const postcss = require('postcss');
-const autoprefixer = require('autoprefixer')({ browsers: ['> 0.5%'], cascade: true });
+const autoprefixer = require('autoprefixer')({ browsers: ['> 2%'], cascade: true });
 const path = require('path');
 
 /**
