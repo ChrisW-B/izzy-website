@@ -1,4 +1,8 @@
 const _ = require('lodash');
+const fs = require('fs');
+const postcss = require('postcss');
+const autoprefixer = require('autoprefixer')({ browsers: ['> 0.5%'], cascade: true });
+const path = require('path');
 
 /**
   Initialises the standard view locals
@@ -40,5 +44,17 @@ exports.requireUser = function (req, res, next) {
     res.redirect('/keystone/signin');
   } else {
     next();
+  }
+};
+
+exports.autoPrefix = (req, res, next) => {
+  if (!req.path.includes('/styles/')) next();
+  else {
+    res.set('Content-Type', 'text/css');
+    fs.readFile(path.join(__dirname, '..', 'public', 'styles', 'sass_build', req.path), (err, css) => {
+      postcss([autoprefixer])
+        .process(css)
+        .then(result => res.send(result.css));
+    });
   }
 };

@@ -58,10 +58,7 @@
     position: relative;
 
     .menu-hex {
-      background: url("/images/mums_pattern.gif") no-repeat center center/800%;
-      clip-path: url(#hex);
-      -webkit-clip-path: url(#hex);
-      filter: invert(1);
+      background: url("/images/mums_menu.png") no-repeat center center/4.3rem;
       height: 5rem;
       width: 5rem;
     }

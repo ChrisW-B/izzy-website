@@ -7,17 +7,17 @@ const keystone = require('keystone');
 const handlebars = require('express-handlebars');
 const _ = require('lodash');
 const Helpers = require('./templates/views/helpers');
+const path = require('path');
 
 keystone.init({
   name: process.env.BLOG_NAME,
   brand: process.env.BLOG_NAME,
-  sass: 'public',
   static: 'public',
   favicon: 'public/favicon.ico',
   views: 'templates/views',
   emails: 'templates/emails',
+  sass: 'public',
   auth: true,
-
   'view engine': '.hbs',
   'custom engine': handlebars.create({
     layoutsDir: './templates/views/layouts',
@@ -30,6 +30,12 @@ keystone.init({
   'session store': 'mongo',
   'user model': 'Member'
 });
+
+keystone.set('sass options', {
+  dest: path.join(__dirname, 'public', 'styles', 'sass_build'),
+  response: false
+});
+
 keystone.import('models');
 keystone.set('locals', {
   _,
