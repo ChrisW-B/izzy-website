@@ -2,8 +2,8 @@
   <a class="name" href='/'><img src='/images/name.png' /></a>
   <h1 class="page-title">{{title}}</h1>
   <div class="mini-menu">
-    <div class="menu-hex"></div>
-    <ul class="menu-items">
+    <button class="menu-hex" id="headerButton"></button>
+    <ul class="menu-items" id="headerMenu">
       {{# each navLinks}}
         {{#ifeq ../section key}}
           {{else}}
@@ -16,3 +16,4 @@
   </div>
 </div>
 <link href="/styles/header.css" rel="stylesheet" />
+<script src="/js/header.js"></script>

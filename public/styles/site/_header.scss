@@ -12,8 +12,6 @@
   justify-items: center;
   padding: 0.2rem 2rem;
   position: relative;
-  transition: z-index 0s $material-animation 0.5s;
-  z-index: 0;
 
   &::before {
     background: url("/images/mums_pattern.gif") no-repeat center center/70% white;
@@ -25,12 +23,6 @@
     position: absolute;
     right: 0;
     top: 0;
-    z-index: -1;
-  }
-
-  &:hover {
-    transition: z-index 0s $material-animation 0s;
-    z-index: 3;
   }
 
   .name {
@@ -44,7 +36,7 @@
 
   .page-title {
     flex: 1 1 auto;
-    font-size: 2.6rem;
+    font-size: 2rem;
     margin: 0;
     text-align: center;
     white-space: nowrap;
@@ -59,6 +51,7 @@
 
     .menu-hex {
       background: url("/images/mums_menu.png") no-repeat center center/4.3rem;
+      border: none;
       height: 5rem;
       width: 5rem;
     }
@@ -72,16 +65,22 @@
       opacity: 0;
       padding: 0;
       position: absolute;
-      right: 0;
-      top: 0;
+      top: 5.2rem;
       transform: translateY(-1rem);
-      transition: transform 0.5s $material-animation 0s, opacity 0.5s $material-animation 0.1s, z-index 0s $material-animation 0.5s;
+      transition: transform 0.5s $material-animation 0s, opacity 0.5s $material-animation 0.1s;
+      visibility: collapse;
+      z-index: 3;
 
-      &:hover {
+      &.show-menu {
+        display: block;
         opacity: 1;
         transform: translateY(0);
-        transition: transform 0.5s $material-animation, opacity 0.5s $material-animation 0.1s, z-index 0s $material-animation 0s;
-        z-index: 3;
+        visibility: visible;
+      }
+
+      &.hiding-menu {
+        opacity: 0;
+        transform: translateY(-1rem);
       }
 
       & .menu-item {
