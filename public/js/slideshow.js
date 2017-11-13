@@ -1,7 +1,7 @@
-const slideshowInfo = {
+let slideshowInfo = {
   index: 0,
   photos: null,
-  name: null
+  slug: null
 };
 
 const createSlide = ({ src, permalink = '', title = '', caption = '', hover = '' }) =>
@@ -17,12 +17,12 @@ const createSlide = ({ src, permalink = '', title = '', caption = '', hover = ''
   `);
 
 const updateSlideshow = () => {
-  const { index, photos, name } = slideshowInfo;
+  const { index, photos, slug } = slideshowInfo;
   let prev = $('<li class="dummy-slide"/>');
   let next = prev.clone();
   if (index > 0) prev = createSlide(photos[index - 1]).addClass('prev-image');
   if (index < photos.length - 1) next = createSlide(photos[index + 1]).addClass('next-image');
-  $(`.${name}.lightbox-images`).html([prev, createSlide(photos[index]).addClass('focus-image'), next]);
+  $(`.${slug}.lightbox-images`).html([prev, createSlide(photos[index]).addClass('focus-image'), next]);
 };
 
 const prevImage = () => {
@@ -48,12 +48,15 @@ const navigate = ({ keyCode }) => {
   if (keyCode === 37 && index > 0) prevImage(); // left = 37
 };
 
-const createSlideshow = (name, info) => {
-  slideshowInfo.index = 0;
-  slideshowInfo.photos = info;
-  slideshowInfo.name = name;
+function createSlideshow() {
+  const { slug, images } = this.dataset;
+  slideshowInfo = {
+    index: 0,
+    photos: JSON.parse(images),
+    slug
+  };
   updateSlideshow();
-};
+}
 
 $(document).on('click', '.prev-image', prevImage);
 $(document).on('click', '.next-image', nextImage);
@@ -61,7 +64,12 @@ $(document).on('click', '.featherlight', closeSlideShow);
 $(document).on('keydown', navigate);
 
 $.featherlight.defaults.beforeClose = () => {
-  slideshowInfo.name = '';
-  slideshowInfo.index = 0;
-  slideshowInfo.photos = [];
+  slideshowInfo = {
+    index: 0,
+    photos: [],
+    slug: ''
+  };
 };
+
+const posts = document.querySelectorAll('.post');
+posts.forEach(post => post.addEventListener('click', createSlideshow));
