@@ -10,7 +10,6 @@ var scriptTemplate = _.template('<script src="<%= src %>"></script>');
 var cssLinkTemplate = _.template('<link href="<%= href %>" rel="stylesheet">');
 
 module.exports = function () {
-
   var _helpers = {};
 
   /**
@@ -21,7 +20,8 @@ module.exports = function () {
   // standard hbs equality check, pass in two values from template
   // {{#ifeq keyToCheck data.myKey}} [requires an else blockin template regardless]
   _helpers.ifeq = function (a, b, options) {
-    if (a == b) { // eslint-disable-line eqeqeq
+    if (a == b) {
+      // eslint-disable-line eqeqeq
       return options.fn(this);
     } else {
       return options.inverse(this);
@@ -89,7 +89,8 @@ module.exports = function () {
   // output. 'Filed Undder <a href="blog/tech">tech</a>, <a href="blog/js">js</a>'
 
   _helpers.tagList = function (tags, options) {
-    var autolink = _.isString(options.hash.autolink) && options.hash.autolink === 'false' ? false : true;
+    var autolink =
+      _.isString(options.hash.autolink) && options.hash.autolink === 'false' ? false : true;
     var separator = _.isString(options.hash.separator) ? options.hash.separator : ', ';
     var prefix = _.isString(options.hash.prefix) ? options.hash.prefix : '';
     var suffix = _.isString(options.hash.suffix) ? options.hash.suffix : '';
@@ -101,7 +102,7 @@ module.exports = function () {
       if (autolink) {
         return _.map(tags, function (tag) {
           return linkTemplate({
-            url: (tag.key),
+            url: tag.key,
             text: _.escape(tag.name),
           });
         }).join(separator);
@@ -123,7 +124,7 @@ module.exports = function () {
   // block rendering for keystone admin css
   _helpers.isAdminEditorCSS = function (user, options) {
     var output = '';
-    if (typeof (user) !== 'undefined' && user.isAdmin) {
+    if (typeof user !== 'undefined' && user.isAdmin) {
       output = cssLinkTemplate({
         href: '/keystone/styles/content/editor.min.css',
       });
@@ -134,7 +135,7 @@ module.exports = function () {
   // block rendering for keystone admin js
   _helpers.isAdminEditorJS = function (user, options) {
     var output = '';
-    if (typeof (user) !== 'undefined' && user.isAdmin) {
+    if (typeof user !== 'undefined' && user.isAdmin) {
       output = scriptTemplate({
         src: '/keystone/js/content/editor.js',
       });
@@ -154,20 +155,25 @@ module.exports = function () {
   _helpers.shortContent = function (content, category, slug) {
     const cleanContent = content.replace(/<[^>]+>/g, '');
     return cleanContent.length > 140
-      ? new hbs.SafeString(`${cleanContent.substring(0, 140)}… <br /> <a href="${_helpers.postUrl(category, slug)}">Read More</a>`)
+      ? new hbs.SafeString(
+          `${cleanContent.substring(0, 140)}… <br /> <a href="${_helpers.postUrl(
+            category,
+            slug,
+          )}">Read More</a>`,
+        )
       : new hbs.SafeString(content);
-  }
+  };
 
   _helpers.generateImageArray = function (images, title, section, slug, content, options) {
-    const urls = images.map(image => ({
+    const urls = images.map((image) => ({
       src: _helpers.cloudinaryUrl(image, options),
       title,
       permalink: `/${section}/post/${slug}`,
       caption: image.caption ? image.caption : content,
-      hover: image.hover ? image.hover : ''
+      hover: image.hover ? image.hover : '',
     }));
     return JSON.stringify(urls);
-  }
+  };
   // ### CloudinaryUrl Helper
   // Direct support of the cloudinary.url method from Handlebars (see
   // cloudinary package documentation for more details).
@@ -193,7 +199,7 @@ module.exports = function () {
     // safe guard to ensure context is never null
     context = context === null ? undefined : context;
 
-    if ((context) && (context.public_id)) {
+    if (context && context.public_id) {
       options.hash.secure = keystone.get('cloudinary secure') || false;
       var imageName = context.public_id.concat('.', context.format);
       return cloudinary.url(imageName, options.hash);
@@ -209,7 +215,7 @@ module.exports = function () {
 
   // Direct url link to a specific post
   _helpers.postUrl = function (slug, category) {
-    return (`/${category}/post/${slug}`);
+    return `/${category}/post/${slug}`;
   };
 
   // might be a ghost helper
@@ -220,7 +226,7 @@ module.exports = function () {
 
   // create the category url for a blog-category page
   _helpers.categoryUrl = function (categorySlug, tag) {
-    return (`/${categorySlug}/${tag}`);
+    return `/${categorySlug}/${tag}`;
   };
 
   // ### Pagination Helpers
@@ -252,14 +258,14 @@ module.exports = function () {
       // create ref to page, so that '...' is displayed as text even though int value is required
       var pageText = page;
       // create boolean flag state if currentPage
-      var isActivePage = ((page === currentPage) ? true : false);
+      var isActivePage = page === currentPage ? true : false;
       // need an active class indicator
-      var liClass = ((isActivePage) ? ' class="active"' : '');
+      var liClass = isActivePage ? ' class="active"' : '';
 
       // if '...' is sent from keystone then we need to override the url
       if (page === '...') {
         // check position of '...' if 0 then return page 1, otherwise use totalPages
-        page = ((ctr) ? totalPages : 1);
+        page = ctr ? totalPages : 1;
       }
 
       // get the pageUrl using the integer value
@@ -292,14 +298,22 @@ module.exports = function () {
     const { index, firstPage, lastPage } = pagination;
     return `
     <ul class='comic-pagination'>
-      <li class='${+index <= +firstPage ? 'disabled':''}'><a href='?page=${+firstPage}' title='First Page'>&laquo;</a></li>
-      <li class='${+index <= +firstPage ? 'disabled':''}'><a href='?page=${+index - 1}' title='Previous Page'>&lsaquo;</a></li>
+      <li class='${
+        +index <= +firstPage ? 'disabled' : ''
+      }'><a href='?page=${+firstPage}' title='First Page'>&laquo;</a></li>
+      <li class='${+index <= +firstPage ? 'disabled' : ''}'><a href='?page=${
+      +index - 1
+    }' title='Previous Page'>&lsaquo;</a></li>
       <li class='disabled page-num'><a href='#'>${index}</a></li>
-      <li class='${+index >= +lastPage ? 'disabled':''}'><a href='?page=${+index + 1}' title='Next Page'>&rsaquo;</a></li>
-      <li class='${+index >= +lastPage ? 'disabled':''}'><a href='?page=${+lastPage}' title='Last Page'>&raquo;</a></li>
+      <li class='${+index >= +lastPage ? 'disabled' : ''}'><a href='?page=${
+      +index + 1
+    }' title='Next Page'>&rsaquo;</a></li>
+      <li class='${
+        +index >= +lastPage ? 'disabled' : ''
+      }'><a href='?page=${+lastPage}' title='Last Page'>&raquo;</a></li>
     </ul>
     `;
-  }
+  };
 
   //  ### Flash Message Helper
   //  KeystoneJS supports a message interface for information/errors to be passed from server
@@ -319,7 +333,6 @@ module.exports = function () {
   _helpers.flashMessages = function (messages) {
     var output = '';
     for (var i = 0; i < messages.length; i++) {
-
       if (messages[i].title) {
         output += '<h4>' + messages[i].title + '</h4>';
       }

@@ -1,7 +1,7 @@
 let slideshowInfo = {
   index: 0,
   photos: null,
-  slug: null
+  slug: null,
 };
 
 const createSlide = ({ src, permalink = '', title = '', caption = '', hover = '' }) =>
@@ -22,7 +22,11 @@ const updateSlideshow = () => {
   let next = prev.clone();
   if (index > 0) prev = createSlide(photos[index - 1]).addClass('prev-image');
   if (index < photos.length - 1) next = createSlide(photos[index + 1]).addClass('next-image');
-  $(`.${slug}.lightbox-images`).html([prev, createSlide(photos[index]).addClass('focus-image'), next]);
+  $(`.${slug}.lightbox-images`).html([
+    prev,
+    createSlide(photos[index]).addClass('focus-image'),
+    next,
+  ]);
 };
 
 const prevImage = () => {
@@ -53,7 +57,7 @@ function createSlideshow() {
   slideshowInfo = {
     index: 0,
     photos: JSON.parse(images),
-    slug
+    slug,
   };
   updateSlideshow();
 }
@@ -67,9 +71,9 @@ $.featherlight.defaults.beforeClose = () => {
   slideshowInfo = {
     index: 0,
     photos: [],
-    slug: ''
+    slug: '',
   };
 };
 
 const posts = document.querySelectorAll('.post');
-posts.forEach(post => post.addEventListener('click', createSlideshow));
+posts.forEach((post) => post.addEventListener('click', createSlideshow));
