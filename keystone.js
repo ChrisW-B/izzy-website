@@ -24,16 +24,16 @@ keystone.init({
     partialsDir: './templates/views/partials',
     defaultLayout: 'default',
     helpers: new Helpers(),
-    extname: '.hbs'
+    extname: '.hbs',
   }).engine,
   'auto update': true,
   'session store': 'mongo',
-  'user model': 'Member'
+  'user model': 'Member',
 });
 
 keystone.set('sass options', {
   dest: path.join(__dirname, 'public', 'styles', 'sass_build'),
-  response: false
+  response: false,
 });
 
 keystone.import('models');
@@ -41,7 +41,7 @@ keystone.set('locals', {
   _,
   env: keystone.get('env'),
   utils: keystone.utils,
-  editable: keystone.content.editable
+  editable: keystone.content.editable,
 });
 keystone.set('routes', require('./routes'));
 
@@ -49,7 +49,7 @@ keystone.set('nav', {
   posts: ['posts', 'images', 'tags'],
   'Static Pages': 'pages',
   members: 'members',
-  emails: 'emails'
+  emails: 'emails',
 });
 
 keystone.set('cloudinary config', process.env.CLOUDINARY_URL);

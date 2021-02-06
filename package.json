@@ -22,7 +22,6 @@
     "postcss-middleware": "^1.1.4"
   },
   "devDependencies": {
-    "babel-eslint": "^8.0.1",
     "eslint": "^5.1.0",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-config-jquery": "^1.0.1",
@@ -41,6 +40,7 @@
     "lint:js:fix": "eslint . --fix",
     "lint:css": "stylelint './public/styles/**/*.scss'",
     "lint:css:fix": "stylelint './public/styles/**/*.scss'",
-    "start": "nodemon ./keystone.js --config ./nodemon.json"
+    "start": "nodemon ./keystone.js --config ./nodemon.json",
+    "prettier": "prettier --list-different \"./**/*.{ts,tsx,js,jsx,gql,html,yml,json}\" --write"
   }
 }

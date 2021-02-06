@@ -1,9 +1,7 @@
 {
   "parser": "babel-eslint",
-  "extends": ["airbnb-base"],
-  "parserOptions": {
-    "ecmaVersion": 6
-  },
+  "extends": ["airbnb-base", "prettier", "prettier/babel"],
+  "env": { "es6": true },
   "rules": {
     "comma-dangle": [2, "never"],
     "eol-last": [1, "never"],

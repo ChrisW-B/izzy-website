@@ -13,36 +13,48 @@ const Grid = (req, res, info) => {
 
   // Load all tags
   view.on('init', (next) => {
-    keystone.list('Tag').model.find().sort('name').exec((err, results) => {
-      if (err || !results.length) {
-        return next(err);
-      }
+    keystone
+      .list('Tag')
+      .model.find()
+      .sort('name')
+      .exec((err, results) => {
+        if (err || !results.length) {
+          return next(err);
+        }
 
-      locals.data.tags = results;
+        locals.data.tags = results;
 
-      // Load the counts for each tags
-      return async.each(locals.data.tags, (tag, next) => {
-        keystone.list('Post').model
-          .count()
-          .where('category')
-          .in([locals.section])
-          .exec((err, count) => {
-            tag.postCount = count;
+        // Load the counts for each tags
+        return async.each(
+          locals.data.tags,
+          (tag, next) => {
+            keystone
+              .list('Post')
+              .model.count()
+              .where('category')
+              .in([locals.section])
+              .exec((err, count) => {
+                tag.postCount = count;
+                next(err);
+              });
+          },
+          (err) => {
             next(err);
-          });
-      }, (err) => {
-        next(err);
+          },
+        );
       });
-    });
   });
 
   // Load the current tag filter
   view.on('init', (next) => {
     if (req.params.tag) {
-      keystone.list('Tag').model.findOne({ key: locals.filters.tag }).exec((err, result) => {
-        locals.data.tag = result;
-        next(err);
-      });
+      keystone
+        .list('Tag')
+        .model.findOne({ key: locals.filters.tag })
+        .exec((err, result) => {
+          locals.data.tag = result;
+          next(err);
+        });
     } else {
       next();
     }
@@ -50,15 +62,16 @@ const Grid = (req, res, info) => {
 
   // Load the posts
   view.on('init', (next) => {
-    const q = keystone.list('Post')
+    const q = keystone
+      .list('Post')
       .paginate({
         page: req.query.page || 1,
         perPage: 10,
         maxPages: 10,
         filters: {
           state: 'published',
-          category: locals.section
-        }
+          category: locals.section,
+        },
       })
       .sort('-publishedDate')
       .populate('author tags images');
