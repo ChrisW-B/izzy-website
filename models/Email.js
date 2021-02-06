@@ -10,7 +10,7 @@ const { Types } = keystone.Field;
 
 const Email = new keystone.List('Email', {
   nocreate: true,
-  noedit: true,
+  noedit: true
 });
 
 Email.add({
@@ -18,7 +18,7 @@ Email.add({
   email: { type: Types.Email, required: true },
   subject: { type: String, required: true },
   message: { type: Types.Markdown, required: true },
-  createdAt: { type: Date, default: Date.now },
+  createdAt: { type: Date, default: Date.now }
 });
 
 Email.schema.pre('save', function (next) {
@@ -46,35 +46,26 @@ Email.schema.methods.sendNotificationEmail = function (callback) {
     return callback(new Error('could not find mailgun credentials'));
   }
 
-  return keystone
-    .list('Member')
-    .model.find()
-    .where('isAdmin', true)
-    .exec((err, admins) => {
-      if (err) return callback(err);
+  return keystone.list('Member').model.find().where('isAdmin', true).exec((err, admins) => {
+    if (err) return callback(err);
 
-      const email = new KeystoneEmail('templates/emails/notification.hbs', {
-        transport: 'mailgun',
-      });
-
-      return email.send(
-        {
-          email: this,
-          layout: false,
-        },
-        {
-          apiKey: process.env.MAILGUN_API_KEY,
-          domain: process.env.MAILGUN_DOMAIN,
-          to: admins,
-          from: { name: process.env.BLOG_NAME, email: process.env.MAIL_FROM },
-          subject: this.subject,
-        },
-        (err, result) =>
-          err
-            ? console.error('🤕 Mailgun test failed with error:\\n', err)
-            : console.log('📬 Successfully sent Mailgun test with result:\n', result),
-      );
+    const email = new KeystoneEmail('templates/emails/notification.hbs', {
+      transport: 'mailgun'
     });
+
+    return email.send({
+      email: this,
+      layout: false
+    }, {
+      apiKey: process.env.MAILGUN_API_KEY,
+      domain: process.env.MAILGUN_DOMAIN,
+      to: admins,
+      from: { name: process.env.BLOG_NAME, email: process.env.MAIL_FROM },
+      subject: this.subject
+    }, (err, result) => (err
+      ? console.error('🤕 Mailgun test failed with error:\n', err)
+      : console.log('📬 Successfully sent Mailgun test with result:\n', result)));
+  });
 };
 
 Email.defaultSort = '-createdAt';

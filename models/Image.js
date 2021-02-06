@@ -9,7 +9,7 @@ const { Types } = keystone.Field;
 
 const Image = new keystone.List('Image', {
   map: { name: 'name' },
-  autokey: { path: 'slug', from: 'name', unique: true },
+  autokey: { path: 'slug', from: 'name', unique: true }
 });
 
 Image.add({
@@ -18,19 +18,19 @@ Image.add({
     type: Types.CloudinaryImage,
     autoCleanup: true,
     required: true,
-    initial: true,
+    initial: true
   },
   caption: {
     type: Types.Html,
     wysiwyg: true,
     initial: true,
-    height: 250,
+    height: 250
   },
   hover: {
     type: String,
     initial: true,
-    label: 'Hover Text',
-  },
+    label: 'Hover Text'
+  }
 });
 Image.relationship({ ref: 'Post', path: 'posts', refPath: 'images' });
 Image.defaultColumns = 'name, image|20%, caption, hover';

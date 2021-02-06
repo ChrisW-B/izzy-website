@@ -13,15 +13,14 @@ const All = (req, res, info) => {
 
   // Load the posts
   view.on('init', (next) => {
-    const q = keystone
-      .list('Post')
+    const q = keystone.list('Post')
       .paginate({
         page: req.query.page || 1,
         perPage: 10,
         maxPages: 10,
         filters: {
-          state: 'published',
-        },
+          state: 'published'
+        }
       })
       .sort('-publishedDate')
       .populate('author tags images');

@@ -15,7 +15,7 @@ exports.initLocals = function (req, res, next) {
     { label: 'Illustrations', key: 'illustrations', href: '/illustrations' },
     { label: 'Comics', key: 'comics', href: '/comics' },
     { label: 'Paperwork', key: 'paperwork', href: '/paperwork' },
-    { label: 'Contact', key: 'contact', href: '/contact' },
+    { label: 'Contact', key: 'contact', href: '/contact' }
   ];
   res.locals.user = req.user;
   next();
@@ -29,9 +29,9 @@ exports.flashMessages = function (req, res, next) {
     info: req.flash('info'),
     success: req.flash('success'),
     warning: req.flash('warning'),
-    error: req.flash('error'),
+    error: req.flash('error')
   };
-  res.locals.messages = _.some(flashMessages, (msgs) => msgs.length) ? flashMessages : false;
+  res.locals.messages = _.some(flashMessages, msgs => msgs.length) ? flashMessages : false;
   next();
 };
 
@@ -51,13 +51,10 @@ exports.autoPrefix = (req, res, next) => {
   if (!req.path.includes('/styles/')) next();
   else {
     res.set('Content-Type', 'text/css');
-    fs.readFile(
-      path.join(__dirname, '..', 'public', 'styles', 'sass_build', req.path),
-      (err, css) => {
-        postcss([autoprefixer])
-          .process(css)
-          .then((result) => res.send(result.css));
-      },
-    );
+    fs.readFile(path.join(__dirname, '..', 'public', 'styles', 'sass_build', req.path), (err, css) => {
+      postcss([autoprefixer])
+        .process(css)
+        .then(result => res.send(result.css));
+    });
   }
 };

@@ -14,13 +14,10 @@ exports = module.exports = function (req, res) {
 
   // Load the current post
   view.on('init', (next) => {
-    const q = keystone
-      .list('Post')
-      .model.findOne({
-        state: 'published',
-        slug: locals.filters.post,
-      })
-      .populate('author tags images');
+    const q = keystone.list('Post').model.findOne({
+      state: 'published',
+      slug: locals.filters.post
+    }).populate('author tags images');
 
     q.exec((err, result) => {
       let index = locals.pagination.index - 1;
@@ -38,12 +35,7 @@ exports = module.exports = function (req, res) {
 
   // Load other posts
   view.on('init', (next) => {
-    const q = keystone
-      .list('Post')
-      .model.find()
-      .where('state', 'published')
-      .sort('-publishedDate')
-      .populate('author')
+    const q = keystone.list('Post').model.find().where('state', 'published').sort('-publishedDate').populate('author')
       .limit('4');
 
     q.exec((err, results) => {

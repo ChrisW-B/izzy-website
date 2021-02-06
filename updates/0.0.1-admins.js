@@ -8,27 +8,19 @@
  */
 
 exports.create = {
-  Member: [
-    {
-      'name.first': 'Admin',
-      'name.last': 'User',
-      email: 'me@chrisb.xyz',
-      password: 'TempPass',
-      isAdmin: true,
-    },
-  ],
+  Member: [{
+    'name.first': 'Admin',
+    'name.last': 'User',
+    email: 'me@chrisb.xyz',
+    password: 'TempPass',
+    isAdmin: true
+  }],
   Page: [
     {
-      name: 'About Page',
-      title: 'About',
-      body: '',
-      type: 'about',
+      name: 'About Page', title: 'About', body: '', type: 'about'
     },
     {
-      name: 'Contact Page',
-      title: 'Contact',
-      body: '',
-      type: 'contact',
-    },
-  ],
+      name: 'Contact Page', title: 'Contact', body: '', type: 'contact'
+    }
+  ]
 };
