@@ -11,8 +11,16 @@ exports.create = {
   Member: [{
     'name.first': 'Admin',
     'name.last': 'User',
-    email: 'me@chriswbarry.com',
+    email: 'me@chrisb.xyz',
     password: 'TempPass',
     isAdmin: true
-  }]
+  }],
+  Page: [
+    {
+      name: 'About Page', title: 'About', body: '', type: 'about'
+    },
+    {
+      name: 'Contact Page', title: 'Contact', body: '', type: 'contact'
+    }
+  ]
 };
