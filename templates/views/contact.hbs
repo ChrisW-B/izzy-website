@@ -1,5 +1,7 @@
 <link href="/styles/contact.css" rel="stylesheet" />
+
 {{>header}}
+
 <div class="contact-container">
   <div class='content'>
     {{{data.body}}}
@@ -7,7 +9,12 @@
   {{#if enquirySubmitted}}
     <h3>Thanks for getting in touch!</h3>
   {{else}}
-    <form class='contact-form' method="post" autocomplete="on">
+    <script>
+      function onSubmit(token) {
+        document.getElementById("contact-form").submit();
+      }
+    </script>
+    <form id='contact-form' class='contact-form' method="post" autocomplete="on">
       <div class="inputs">
         <input type="hidden" name="action" value="contact">
         <label for="name">Name</label>
@@ -19,7 +26,21 @@
         <label for="message">Message</label>
         <textarea class="{{#if validationErrors.message}}has-error{{/if}}" name="message" id="message" placeholder="Leave a message..." rows="6">{{formData.message}}</textarea>
       </div>
-      <button type="submit">Send</button>
+      <div class='submit'>
+        <button 
+          type="submit"
+          class="g-recaptcha" 
+          data-sitekey="6LdQs0waAAAAAGop0oMB81biXP4QJTgFTWfY3QMu" 
+          data-callback='onSubmit' 
+          data-action='submit'>
+            Send
+        </button>
+        <p class='badge-adv'>
+          This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+        </p>
+      </div>
     </form>
+      
+      
   {{/if}}
 </div>
